@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph GraphDirection="LeftToRight" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="3.Framework\Peacock.Common" Label="Peacock.Common" Category="项目" />
+    <Node Id="EnterpriseLibrary.Common 6.0.1304.0" Label="EnterpriseLibrary.Common 6.0.1304.0" Category="包" />
+    <Node Id="EnterpriseLibrary.Data 6.0.1304.0" Label="EnterpriseLibrary.Data 6.0.1304.0" Category="包" />
+    <Node Id="log4net 2.0.5" Label="log4net 2.0.5" Category="包" />
+    <Node Id="Newtonsoft.Json 7.0.1" Label="Newtonsoft.Json 7.0.1" Category="包" />
+    <Node Id="RestSharp 105.2.3" Label="RestSharp 105.2.3" Category="包" />
+    <Node Id="1.Business\Peacock.ZXEval.Service" Label="Peacock.ZXEval.Service" Category="项目" />
+    <Node Id="ICSharpCode.SharpZipLib.dll 0.85.4.369" Label="ICSharpCode.SharpZipLib.dll 0.85.4.369" Category="包" />
+    <Node Id="log4net 2.0.5" Label="log4net 2.0.5" Category="包" />
+    <Node Id="1.Business\Peacock.ZXEval.DataAdapter" Label="Peacock.ZXEval.DataAdapter" Category="项目" />
+    <Node Id="AutoMapper 4.1.1" Label="AutoMapper 4.1.1" Category="包" />
+    <Node Id="log4net 2.0.5" Label="log4net 2.0.5" Category="包" />
+    <Node Id="Peacock.DataBase.DataConvert 1.0.0" Label="Peacock.DataBase.DataConvert 1.0.0" Category="包" />
+    <Node Id="Peacock.ESB 1.0.0" Label="Peacock.ESB 1.0.0" Category="包" />
+    <Node Id="1.Business\Peacock.ZXEval.Model" Label="Peacock.ZXEval.Model" Category="项目" />
+    <Node Id="log4net 2.0.5" Label="log4net 2.0.5" Category="包" />
+    <Node Id="Peacock.DataBase.DataConvert 1.0.0" Label="Peacock.DataBase.DataConvert 1.0.0" Category="包" />
+    <Node Id="2.Repository\Peacock.ZXEval.Repository" Label="Peacock.ZXEval.Repository" Category="项目" />
+    <Node Id="EntityFramework 6.1.3" Label="EntityFramework 6.1.3" Category="包" />
+    <Node Id="log4net 2.0.5" Label="log4net 2.0.5" Category="包" />
+    <Node Id="StaticVoid.Core.Repository 1.2.4" Label="StaticVoid.Core.Repository 1.2.4" Category="包" />
+    <Node Id="2.Repository\Peacock.ZXEval.Data" Label="Peacock.ZXEval.Data" Category="项目" />
+    <Node Id="EntityFramework 6.1.3" Label="EntityFramework 6.1.3" Category="包" />
+    <Node Id="log4net 2.0.5" Label="log4net 2.0.5" Category="包" />
+    <Node Id="StaticVoid.Core.Repository 1.2.4" Label="StaticVoid.Core.Repository 1.2.4" Category="包" />
+    <Node Id="0.UI\Peacock.ZXEval.WebApi" Label="Peacock.ZXEval.WebApi" Category="项目" />
+    <Node Id="Antlr 3.4.1.9004" Label="Antlr 3.4.1.9004" Category="包" />
+    <Node Id="bootstrap 3.0.0" Label="bootstrap 3.0.0" Category="包" />
+    <Node Id="EntityFramework 6.1.3" Label="EntityFramework 6.1.3" Category="包" />
+    <Node Id="EntityFramework.zh-Hans 6.1.3" Label="EntityFramework.zh-Hans 6.1.3" Category="包" />
+    <Node Id="jQuery 1.10.2" Label="jQuery 1.10.2" Category="包" />
+    <Node Id="jQuery.Validation 1.11.1" Label="jQuery.Validation 1.11.1" Category="包" />
+    <Node Id="log4net 2.0.5" Label="log4net 2.0.5" Category="包" />
+    <Node Id="Microsoft.AspNet.Identity.Core 2.2.1" Label="Microsoft.AspNet.Identity.Core 2.2.1" Category="包" />
+    <Node Id="Microsoft.AspNet.Identity.Core.zh-Hans 2.2.1" Label="Microsoft.AspNet.Identity.Core.zh-Hans 2.2.1" Category="包" />
+    <Node Id="Microsoft.AspNet.Identity.EntityFramework 2.2.1" Label="Microsoft.AspNet.Identity.EntityFramework 2.2.1" Category="包" />
+    <Node Id="Microsoft.AspNet.Identity.EntityFramework.zh-Hans 2.2.1" Label="Microsoft.AspNet.Identity.EntityFramework.zh-Hans 2.2.1" Category="包" />
+    <Node Id="Microsoft.AspNet.Identity.Owin 2.2.1" Label="Microsoft.AspNet.Identity.Owin 2.2.1" Category="包" />
+    <Node Id="Microsoft.AspNet.Identity.Owin.zh-Hans 2.2.1" Label="Microsoft.AspNet.Identity.Owin.zh-Hans 2.2.1" Category="包" />
+    <Node Id="Microsoft.AspNet.Mvc 5.2.3" Label="Microsoft.AspNet.Mvc 5.2.3" Category="包" />
+    <Node Id="Microsoft.AspNet.Mvc.zh-Hans 5.2.3" Label="Microsoft.AspNet.Mvc.zh-Hans 5.2.3" Category="包" />
+    <Node Id="Microsoft.AspNet.Razor 3.2.3" Label="Microsoft.AspNet.Razor 3.2.3" Category="包" />
+    <Node Id="Microsoft.AspNet.Razor.zh-Hans 3.2.3" Label="Microsoft.AspNet.Razor.zh-Hans 3.2.3" Category="包" />
+    <Node Id="Microsoft.AspNet.Web.Optimization 1.1.3" Label="Microsoft.AspNet.Web.Optimization 1.1.3" Category="包" />
+    <Node Id="Microsoft.AspNet.Web.Optimization.zh-Hans 1.1.3" Label="Microsoft.AspNet.Web.Optimization.zh-Hans 1.1.3" Category="包" />
+    <Node Id="Microsoft.AspNet.WebApi 5.2.3" Label="Microsoft.AspNet.WebApi 5.2.3" Category="包" />
+    <Node Id="Microsoft.AspNet.WebApi.Client 5.2.3" Label="Microsoft.AspNet.WebApi.Client 5.2.3" Category="包" />
+    <Node Id="Microsoft.AspNet.WebApi.Client.zh-Hans 5.2.3" Label="Microsoft.AspNet.WebApi.Client.zh-Hans 5.2.3" Category="包" />
+    <Node Id="Microsoft.AspNet.WebApi.Core 5.2.3" Label="Microsoft.AspNet.WebApi.Core 5.2.3" Category="包" />
+    <Node Id="Microsoft.AspNet.WebApi.Core.zh-Hans 5.2.3" Label="Microsoft.AspNet.WebApi.Core.zh-Hans 5.2.3" Category="包" />
+    <Node Id="Microsoft.AspNet.WebApi.HelpPage 5.2.3" Label="Microsoft.AspNet.WebApi.HelpPage 5.2.3" Category="包" />
+    <Node Id="Microsoft.AspNet.WebApi.Owin 5.2.3" Label="Microsoft.AspNet.WebApi.Owin 5.2.3" Category="包" />
+    <Node Id="Microsoft.AspNet.WebApi.Owin.zh-Hans 5.2.3" Label="Microsoft.AspNet.WebApi.Owin.zh-Hans 5.2.3" Category="包" />
+    <Node Id="Microsoft.AspNet.WebApi.WebHost 5.2.3" Label="Microsoft.AspNet.WebApi.WebHost 5.2.3" Category="包" />
+    <Node Id="Microsoft.AspNet.WebApi.WebHost.zh-Hans 5.2.3" Label="Microsoft.AspNet.WebApi.WebHost.zh-Hans 5.2.3" Category="包" />
+    <Node Id="Microsoft.AspNet.WebPages 3.2.3" Label="Microsoft.AspNet.WebPages 3.2.3" Category="包" />
+    <Node Id="Microsoft.AspNet.WebPages.zh-Hans 3.2.3" Label="Microsoft.AspNet.WebPages.zh-Hans 3.2.3" Category="包" />
+    <Node Id="Microsoft.jQuery.Unobtrusive.Validation 3.2.3" Label="Microsoft.jQuery.Unobtrusive.Validation 3.2.3" Category="包" />
+    <Node Id="Microsoft.Owin 3.0.1" Label="Microsoft.Owin 3.0.1" Category="包" />
+    <Node Id="Microsoft.Owin.Host.SystemWeb 3.0.1" Label="Microsoft.Owin.Host.SystemWeb 3.0.1" Category="包" />
+    <Node Id="Microsoft.Owin.Host.SystemWeb.zh-Hans 3.0.1" Label="Microsoft.Owin.Host.SystemWeb.zh-Hans 3.0.1" Category="包" />
+    <Node Id="Microsoft.Owin.Security 3.0.1" Label="Microsoft.Owin.Security 3.0.1" Category="包" />
+    <Node Id="Microsoft.Owin.Security.Cookies 3.0.1" Label="Microsoft.Owin.Security.Cookies 3.0.1" Category="包" />
+    <Node Id="Microsoft.Owin.Security.Facebook 3.0.1" Label="Microsoft.Owin.Security.Facebook 3.0.1" Category="包" />
+    <Node Id="Microsoft.Owin.Security.Facebook.zh-Hans 3.0.1" Label="Microsoft.Owin.Security.Facebook.zh-Hans 3.0.1" Category="包" />
+    <Node Id="Microsoft.Owin.Security.Google 3.0.1" Label="Microsoft.Owin.Security.Google 3.0.1" Category="包" />
+    <Node Id="Microsoft.Owin.Security.Google.zh-Hans 3.0.1" Label="Microsoft.Owin.Security.Google.zh-Hans 3.0.1" Category="包" />
+    <Node Id="Microsoft.Owin.Security.MicrosoftAccount 3.0.1" Label="Microsoft.Owin.Security.MicrosoftAccount 3.0.1" Category="包" />
+    <Node Id="Microsoft.Owin.Security.MicrosoftAccount.zh-Hans 3.0.1" Label="Microsoft.Owin.Security.MicrosoftAccount.zh-Hans 3.0.1" Category="包" />
+    <Node Id="Microsoft.Owin.Security.OAuth 3.0.1" Label="Microsoft.Owin.Security.OAuth 3.0.1" Category="包" />
+    <Node Id="Microsoft.Owin.Security.Twitter 3.0.1" Label="Microsoft.Owin.Security.Twitter 3.0.1" Category="包" />
+    <Node Id="Microsoft.Owin.Security.Twitter.zh-Hans 3.0.1" Label="Microsoft.Owin.Security.Twitter.zh-Hans 3.0.1" Category="包" />
+    <Node Id="Microsoft.Owin.Security.zh-Hans 3.0.1" Label="Microsoft.Owin.Security.zh-Hans 3.0.1" Category="包" />
+    <Node Id="Microsoft.Owin.zh-Hans 3.0.1" Label="Microsoft.Owin.zh-Hans 3.0.1" Category="包" />
+    <Node Id="Microsoft.Web.Infrastructure 1.0.0.0" Label="Microsoft.Web.Infrastructure 1.0.0.0" Category="包" />
+    <Node Id="Newtonsoft.Json 7.0.1" Label="Newtonsoft.Json 7.0.1" Category="包" />
+    <Node Id="Owin 1.0" Label="Owin 1.0" Category="包" />
+    <Node Id="Respond 1.2.0" Label="Respond 1.2.0" Category="包" />
+    <Node Id="WebGrease 1.5.2" Label="WebGrease 1.5.2" Category="包" />
+    <Node Id="0.UI\Peacock.ZXEval.WebSite" Label="Peacock.ZXEval.WebSite" Category="项目" />
+    <Node Id="ChnCharInfo 1.0.0" Label="ChnCharInfo 1.0.0" Category="包" />
+    <Node Id="CRMService 1.0.0.1" Label="CRMService 1.0.0.1" Category="包" />
+    <Node Id="EntityFramework 6.1.3" Label="EntityFramework 6.1.3" Category="包" />
+    <Node Id="EntityFramework.zh-Hans 6.1.3" Label="EntityFramework.zh-Hans 6.1.3" Category="包" />
+    <Node Id="ICSharpCode.SharpZipLib.dll 0.85.4.369" Label="ICSharpCode.SharpZipLib.dll 0.85.4.369" Category="包" />
+    <Node Id="jQuery 1.8.2" Label="jQuery 1.8.2" Category="包" />
+    <Node Id="jQuery.UI.Combined 1.8.24" Label="jQuery.UI.Combined 1.8.24" Category="包" />
+    <Node Id="jQuery.Validation 1.10.0" Label="jQuery.Validation 1.10.0" Category="包" />
+    <Node Id="knockoutjs 2.2.0" Label="knockoutjs 2.2.0" Category="包" />
+    <Node Id="log4net 2.0.5" Label="log4net 2.0.5" Category="包" />
+    <Node Id="Microsoft.AspNet.Mvc 4.0.30506.0" Label="Microsoft.AspNet.Mvc 4.0.30506.0" Category="包" />
+    <Node Id="Microsoft.AspNet.Mvc.FixedDisplayModes 1.0.0" Label="Microsoft.AspNet.Mvc.FixedDisplayModes 1.0.0" Category="包" />
+    <Node Id="Microsoft.AspNet.Mvc.zh-Hans 4.0.30506.0" Label="Microsoft.AspNet.Mvc.zh-Hans 4.0.30506.0" Category="包" />
+    <Node Id="Microsoft.AspNet.Razor 2.0.30506.0" Label="Microsoft.AspNet.Razor 2.0.30506.0" Category="包" />
+    <Node Id="Microsoft.AspNet.Razor.zh-Hans 2.0.30506.0" Label="Microsoft.AspNet.Razor.zh-Hans 2.0.30506.0" Category="包" />
+    <Node Id="Microsoft.AspNet.Web.Optimization 1.0.0" Label="Microsoft.AspNet.Web.Optimization 1.0.0" Category="包" />
+    <Node Id="Microsoft.AspNet.Web.Optimization.zh-Hans 1.0.0" Label="Microsoft.AspNet.Web.Optimization.zh-Hans 1.0.0" Category="包" />
+    <Node Id="Microsoft.AspNet.WebApi 4.0.30506.0" Label="Microsoft.AspNet.WebApi 4.0.30506.0" Category="包" />
+    <Node Id="Microsoft.AspNet.WebApi.Client 4.0.30506.0" Label="Microsoft.AspNet.WebApi.Client 4.0.30506.0" Category="包" />
+    <Node Id="Microsoft.AspNet.WebApi.Client.zh-Hans 4.0.30506.0" Label="Microsoft.AspNet.WebApi.Client.zh-Hans 4.0.30506.0" Category="包" />
+    <Node Id="Microsoft.AspNet.WebApi.Core 4.0.30506.0" Label="Microsoft.AspNet.WebApi.Core 4.0.30506.0" Category="包" />
+    <Node Id="Microsoft.AspNet.WebApi.Core.zh-Hans 4.0.30506.0" Label="Microsoft.AspNet.WebApi.Core.zh-Hans 4.0.30506.0" Category="包" />
+    <Node Id="Microsoft.AspNet.WebApi.OData 4.0.30506" Label="Microsoft.AspNet.WebApi.OData 4.0.30506" Category="包" />
+    <Node Id="Microsoft.AspNet.WebApi.OData.zh-Hans 4.0.30506" Label="Microsoft.AspNet.WebApi.OData.zh-Hans 4.0.30506" Category="包" />
+    <Node Id="Microsoft.AspNet.WebApi.WebHost 4.0.30506.0" Label="Microsoft.AspNet.WebApi.WebHost 4.0.30506.0" Category="包" />
+    <Node Id="Microsoft.AspNet.WebApi.WebHost.zh-Hans 4.0.30506.0" Label="Microsoft.AspNet.WebApi.WebHost.zh-Hans 4.0.30506.0" Category="包" />
+    <Node Id="Microsoft.AspNet.WebPages 2.0.30506.0" Label="Microsoft.AspNet.WebPages 2.0.30506.0" Category="包" />
+    <Node Id="Microsoft.AspNet.WebPages.Data 2.0.20710.0" Label="Microsoft.AspNet.WebPages.Data 2.0.20710.0" Category="包" />
+    <Node Id="Microsoft.AspNet.WebPages.Data.zh-Hans 2.0.20710.0" Label="Microsoft.AspNet.WebPages.Data.zh-Hans 2.0.20710.0" Category="包" />
+    <Node Id="Microsoft.AspNet.WebPages.WebData 2.0.30506.0" Label="Microsoft.AspNet.WebPages.WebData 2.0.30506.0" Category="包" />
+    <Node Id="Microsoft.AspNet.WebPages.WebData.zh-Hans 2.0.30506.0" Label="Microsoft.AspNet.WebPages.WebData.zh-Hans 2.0.30506.0" Category="包" />
+    <Node Id="Microsoft.AspNet.WebPages.zh-Hans 2.0.30506.0" Label="Microsoft.AspNet.WebPages.zh-Hans 2.0.30506.0" Category="包" />
+    <Node Id="Microsoft.Data.Edm 5.2.0" Label="Microsoft.Data.Edm 5.2.0" Category="包" />
+    <Node Id="Microsoft.Data.OData 5.2.0" Label="Microsoft.Data.OData 5.2.0" Category="包" />
+    <Node Id="Microsoft.International.Converters.PinYinConverter 1.0.0" Label="Microsoft.International.Converters.PinYinConverter 1.0.0" Category="包" />
+    <Node Id="Microsoft.jQuery.Unobtrusive.Ajax 2.0.30506.0" Label="Microsoft.jQuery.Unobtrusive.Ajax 2.0.30506.0" Category="包" />
+    <Node Id="Microsoft.jQuery.Unobtrusive.Validation 2.0.30506.0" Label="Microsoft.jQuery.Unobtrusive.Validation 2.0.30506.0" Category="包" />
+    <Node Id="Microsoft.Net.Http 2.0.20710.0" Label="Microsoft.Net.Http 2.0.20710.0" Category="包" />
+    <Node Id="Microsoft.Net.Http.zh-Hans 2.0.20710.0" Label="Microsoft.Net.Http.zh-Hans 2.0.20710.0" Category="包" />
+    <Node Id="Microsoft.Web.Infrastructure 1.0.0.0" Label="Microsoft.Web.Infrastructure 1.0.0.0" Category="包" />
+    <Node Id="Modernizr 2.6.2" Label="Modernizr 2.6.2" Category="包" />
+    <Node Id="Newtonsoft.Json 7.0.1" Label="Newtonsoft.Json 7.0.1" Category="包" />
+    <Node Id="NPOI 2.1.3.1" Label="NPOI 2.1.3.1" Category="包" />
+    <Node Id="NPOI.Excel 2.1.1" Label="NPOI.Excel 2.1.1" Category="包" />
+    <Node Id="Peacock.DataBase.DataConvert 1.0.0" Label="Peacock.DataBase.DataConvert 1.0.0" Category="包" />
+    <Node Id="System.Spatial 5.2.0" Label="System.Spatial 5.2.0" Category="包" />
+    <Node Id="WebGrease 1.3.0" Label="WebGrease 1.3.0" Category="包" />
+  </Nodes>
+  <Links>
+    <Link Source="EnterpriseLibrary.Data 6.0.1304.0" Target="EnterpriseLibrary.Common 6.0.1304.0" Category="程序包依赖项" />
+    <Link Source="3.Framework\Peacock.Common" Target="EnterpriseLibrary.Data 6.0.1304.0" Category="安装的程序包" />
+    <Link Source="3.Framework\Peacock.Common" Target="log4net 2.0.5" Category="安装的程序包" />
+    <Link Source="3.Framework\Peacock.Common" Target="Newtonsoft.Json 7.0.1" Category="安装的程序包" />
+    <Link Source="3.Framework\Peacock.Common" Target="RestSharp 105.2.3" Category="安装的程序包" />
+    <Link Source="1.Business\Peacock.ZXEval.Service" Target="ICSharpCode.SharpZipLib.dll 0.85.4.369" Category="安装的程序包" />
+    <Link Source="1.Business\Peacock.ZXEval.Service" Target="log4net 2.0.5" Category="安装的程序包" />
+    <Link Source="1.Business\Peacock.ZXEval.DataAdapter" Target="AutoMapper 4.1.1" Category="安装的程序包" />
+    <Link Source="1.Business\Peacock.ZXEval.DataAdapter" Target="log4net 2.0.5" Category="安装的程序包" />
+    <Link Source="1.Business\Peacock.ZXEval.DataAdapter" Target="Peacock.DataBase.DataConvert 1.0.0" Category="安装的程序包" />
+    <Link Source="1.Business\Peacock.ZXEval.DataAdapter" Target="Peacock.ESB 1.0.0" Category="安装的程序包" />
+    <Link Source="1.Business\Peacock.ZXEval.Model" Target="log4net 2.0.5" Category="安装的程序包" />
+    <Link Source="1.Business\Peacock.ZXEval.Model" Target="Peacock.DataBase.DataConvert 1.0.0" Category="安装的程序包" />
+    <Link Source="StaticVoid.Core.Repository 1.2.4" Target="EntityFramework 6.1.3" Category="程序包依赖项" />
+    <Link Source="2.Repository\Peacock.ZXEval.Repository" Target="log4net 2.0.5" Category="安装的程序包" />
+    <Link Source="2.Repository\Peacock.ZXEval.Repository" Target="StaticVoid.Core.Repository 1.2.4" Category="安装的程序包" />
+    <Link Source="StaticVoid.Core.Repository 1.2.4" Target="EntityFramework 6.1.3" Category="程序包依赖项" />
+    <Link Source="2.Repository\Peacock.ZXEval.Data" Target="log4net 2.0.5" Category="安装的程序包" />
+    <Link Source="2.Repository\Peacock.ZXEval.Data" Target="StaticVoid.Core.Repository 1.2.4" Category="安装的程序包" />
+    <Link Source="bootstrap 3.0.0" Target="jQuery 1.10.2" Category="程序包依赖项" />
+    <Link Source="EntityFramework.zh-Hans 6.1.3" Target="EntityFramework 6.1.3" Category="程序包依赖项" />
+    <Link Source="jQuery.Validation 1.11.1" Target="jQuery 1.10.2" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.Identity.Core.zh-Hans 2.2.1" Target="Microsoft.AspNet.Identity.Core 2.2.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.Identity.EntityFramework 2.2.1" Target="Microsoft.AspNet.Identity.Core 2.2.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.Identity.EntityFramework 2.2.1" Target="EntityFramework 6.1.3" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.Identity.EntityFramework.zh-Hans 2.2.1" Target="Microsoft.AspNet.Identity.EntityFramework 2.2.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.Identity.Owin 2.2.1" Target="Microsoft.AspNet.Identity.Core 2.2.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.Identity.Owin 2.2.1" Target="Microsoft.Owin.Security 3.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.Identity.Owin 2.2.1" Target="Microsoft.Owin.Security.Cookies 3.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.Identity.Owin 2.2.1" Target="Microsoft.Owin.Security.OAuth 3.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.Identity.Owin.zh-Hans 2.2.1" Target="Microsoft.AspNet.Identity.Owin 2.2.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.Mvc 5.2.3" Target="Microsoft.AspNet.WebPages 3.2.3" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.Mvc 5.2.3" Target="Microsoft.AspNet.Razor 3.2.3" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.Mvc.zh-Hans 5.2.3" Target="Microsoft.AspNet.Mvc 5.2.3" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.Razor.zh-Hans 3.2.3" Target="Microsoft.AspNet.Razor 3.2.3" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.Web.Optimization 1.1.3" Target="Microsoft.Web.Infrastructure 1.0.0.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.Web.Optimization 1.1.3" Target="WebGrease 1.5.2" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.Web.Optimization.zh-Hans 1.1.3" Target="Microsoft.AspNet.Web.Optimization 1.1.3" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebApi 5.2.3" Target="Microsoft.AspNet.WebApi.WebHost 5.2.3" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebApi.Client 5.2.3" Target="Newtonsoft.Json 7.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebApi.Client 5.2.3" Target="Newtonsoft.Json 7.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebApi.Client.zh-Hans 5.2.3" Target="Microsoft.AspNet.WebApi.Client 5.2.3" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebApi.Core 5.2.3" Target="Microsoft.AspNet.WebApi.Client 5.2.3" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebApi.Core.zh-Hans 5.2.3" Target="Microsoft.AspNet.WebApi.Core 5.2.3" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebApi.HelpPage 5.2.3" Target="Microsoft.AspNet.WebApi.WebHost 5.2.3" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebApi.HelpPage 5.2.3" Target="Microsoft.AspNet.Mvc 5.2.3" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebApi.HelpPage 5.2.3" Target="Microsoft.AspNet.Razor 3.2.3" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebApi.Owin 5.2.3" Target="Microsoft.AspNet.WebApi.Core 5.2.3" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebApi.Owin 5.2.3" Target="Microsoft.Owin 3.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebApi.Owin 5.2.3" Target="Owin 1.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebApi.Owin.zh-Hans 5.2.3" Target="Microsoft.AspNet.WebApi.Owin 5.2.3" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebApi.WebHost 5.2.3" Target="Microsoft.AspNet.WebApi.Core 5.2.3" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebApi.WebHost.zh-Hans 5.2.3" Target="Microsoft.AspNet.WebApi.WebHost 5.2.3" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebPages 3.2.3" Target="Microsoft.Web.Infrastructure 1.0.0.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebPages 3.2.3" Target="Microsoft.AspNet.Razor 3.2.3" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebPages.zh-Hans 3.2.3" Target="Microsoft.AspNet.WebPages 3.2.3" Category="程序包依赖项" />
+    <Link Source="Microsoft.jQuery.Unobtrusive.Validation 3.2.3" Target="jQuery 1.10.2" Category="程序包依赖项" />
+    <Link Source="Microsoft.jQuery.Unobtrusive.Validation 3.2.3" Target="jQuery.Validation 1.11.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin 3.0.1" Target="Owin 1.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Host.SystemWeb 3.0.1" Target="Owin 1.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Host.SystemWeb 3.0.1" Target="Microsoft.Owin 3.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Host.SystemWeb.zh-Hans 3.0.1" Target="Microsoft.Owin.Host.SystemWeb 3.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Security 3.0.1" Target="Owin 1.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Security 3.0.1" Target="Microsoft.Owin 3.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Security.Cookies 3.0.1" Target="Owin 1.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Security.Cookies 3.0.1" Target="Microsoft.Owin 3.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Security.Cookies 3.0.1" Target="Microsoft.Owin.Security 3.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Security.Facebook 3.0.1" Target="Owin 1.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Security.Facebook 3.0.1" Target="Newtonsoft.Json 7.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Security.Facebook 3.0.1" Target="Microsoft.Owin 3.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Security.Facebook 3.0.1" Target="Microsoft.Owin.Security 3.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Security.Facebook.zh-Hans 3.0.1" Target="Microsoft.Owin.Security.Facebook 3.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Security.Google 3.0.1" Target="Owin 1.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Security.Google 3.0.1" Target="Newtonsoft.Json 7.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Security.Google 3.0.1" Target="Microsoft.Owin 3.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Security.Google 3.0.1" Target="Microsoft.Owin.Security 3.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Security.Google.zh-Hans 3.0.1" Target="Microsoft.Owin.Security.Google 3.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Security.MicrosoftAccount 3.0.1" Target="Owin 1.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Security.MicrosoftAccount 3.0.1" Target="Microsoft.Owin 3.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Security.MicrosoftAccount 3.0.1" Target="Newtonsoft.Json 7.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Security.MicrosoftAccount 3.0.1" Target="Microsoft.Owin.Security 3.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Security.MicrosoftAccount.zh-Hans 3.0.1" Target="Microsoft.Owin.Security.MicrosoftAccount 3.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Security.OAuth 3.0.1" Target="Owin 1.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Security.OAuth 3.0.1" Target="Microsoft.Owin 3.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Security.OAuth 3.0.1" Target="Newtonsoft.Json 7.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Security.OAuth 3.0.1" Target="Microsoft.Owin.Security 3.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Security.Twitter 3.0.1" Target="Owin 1.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Security.Twitter 3.0.1" Target="Microsoft.Owin 3.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Security.Twitter 3.0.1" Target="Newtonsoft.Json 7.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Security.Twitter 3.0.1" Target="Microsoft.Owin.Security 3.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Security.Twitter.zh-Hans 3.0.1" Target="Microsoft.Owin.Security.Twitter 3.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.Security.zh-Hans 3.0.1" Target="Microsoft.Owin.Security 3.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.Owin.zh-Hans 3.0.1" Target="Microsoft.Owin 3.0.1" Category="程序包依赖项" />
+    <Link Source="WebGrease 1.5.2" Target="Antlr 3.4.1.9004" Category="程序包依赖项" />
+    <Link Source="WebGrease 1.5.2" Target="Newtonsoft.Json 7.0.1" Category="程序包依赖项" />
+    <Link Source="0.UI\Peacock.ZXEval.WebApi" Target="bootstrap 3.0.0" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebApi" Target="EntityFramework.zh-Hans 6.1.3" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebApi" Target="log4net 2.0.5" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebApi" Target="Microsoft.AspNet.Identity.Core.zh-Hans 2.2.1" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebApi" Target="Microsoft.AspNet.Identity.EntityFramework.zh-Hans 2.2.1" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebApi" Target="Microsoft.AspNet.Identity.Owin.zh-Hans 2.2.1" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebApi" Target="Microsoft.AspNet.Mvc.zh-Hans 5.2.3" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebApi" Target="Microsoft.AspNet.Razor.zh-Hans 3.2.3" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebApi" Target="Microsoft.AspNet.Web.Optimization.zh-Hans 1.1.3" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebApi" Target="Microsoft.AspNet.WebApi 5.2.3" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebApi" Target="Microsoft.AspNet.WebApi.Client.zh-Hans 5.2.3" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebApi" Target="Microsoft.AspNet.WebApi.Core.zh-Hans 5.2.3" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebApi" Target="Microsoft.AspNet.WebApi.HelpPage 5.2.3" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebApi" Target="Microsoft.AspNet.WebApi.Owin.zh-Hans 5.2.3" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebApi" Target="Microsoft.AspNet.WebApi.WebHost.zh-Hans 5.2.3" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebApi" Target="Microsoft.AspNet.WebPages.zh-Hans 3.2.3" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebApi" Target="Microsoft.jQuery.Unobtrusive.Validation 3.2.3" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebApi" Target="Microsoft.Owin.Host.SystemWeb.zh-Hans 3.0.1" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebApi" Target="Microsoft.Owin.Security.Facebook.zh-Hans 3.0.1" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebApi" Target="Microsoft.Owin.Security.Google.zh-Hans 3.0.1" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebApi" Target="Microsoft.Owin.Security.MicrosoftAccount.zh-Hans 3.0.1" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebApi" Target="Microsoft.Owin.Security.Twitter.zh-Hans 3.0.1" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebApi" Target="Microsoft.Owin.Security.zh-Hans 3.0.1" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebApi" Target="Microsoft.Owin.zh-Hans 3.0.1" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebApi" Target="Respond 1.2.0" Category="安装的程序包" />
+    <Link Source="EntityFramework.zh-Hans 6.1.3" Target="EntityFramework 6.1.3" Category="程序包依赖项" />
+    <Link Source="jQuery.UI.Combined 1.8.24" Target="jQuery 1.8.2" Category="程序包依赖项" />
+    <Link Source="jQuery.Validation 1.10.0" Target="jQuery 1.8.2" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.Mvc 4.0.30506.0" Target="Microsoft.AspNet.WebPages 2.0.30506.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.Mvc 4.0.30506.0" Target="Microsoft.AspNet.Razor 2.0.30506.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.Mvc.FixedDisplayModes 1.0.0" Target="Microsoft.AspNet.Mvc 4.0.30506.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.Mvc.zh-Hans 4.0.30506.0" Target="Microsoft.AspNet.Mvc 4.0.30506.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.Razor.zh-Hans 2.0.30506.0" Target="Microsoft.AspNet.Razor 2.0.30506.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.Web.Optimization 1.0.0" Target="Microsoft.Web.Infrastructure 1.0.0.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.Web.Optimization 1.0.0" Target="WebGrease 1.3.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.Web.Optimization.zh-Hans 1.0.0" Target="Microsoft.AspNet.Web.Optimization 1.0.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebApi 4.0.30506.0" Target="Microsoft.AspNet.WebApi.WebHost 4.0.30506.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebApi.Client 4.0.30506.0" Target="Microsoft.Net.Http 2.0.20710.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebApi.Client 4.0.30506.0" Target="Newtonsoft.Json 7.0.1" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebApi.Client.zh-Hans 4.0.30506.0" Target="Microsoft.AspNet.WebApi.Client 4.0.30506.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebApi.Core 4.0.30506.0" Target="Microsoft.AspNet.WebApi.Client 4.0.30506.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebApi.Core.zh-Hans 4.0.30506.0" Target="Microsoft.AspNet.WebApi.Core 4.0.30506.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebApi.OData 4.0.30506" Target="Microsoft.Net.Http 2.0.20710.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebApi.OData 4.0.30506" Target="Microsoft.AspNet.WebApi.Client 4.0.30506.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebApi.OData 4.0.30506" Target="Microsoft.AspNet.WebApi.Core 4.0.30506.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebApi.OData 4.0.30506" Target="Microsoft.Data.OData 5.2.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebApi.OData.zh-Hans 4.0.30506" Target="Microsoft.AspNet.WebApi.OData 4.0.30506" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebApi.WebHost 4.0.30506.0" Target="Microsoft.Web.Infrastructure 1.0.0.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebApi.WebHost 4.0.30506.0" Target="Microsoft.AspNet.WebApi.Core 4.0.30506.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebApi.WebHost.zh-Hans 4.0.30506.0" Target="Microsoft.AspNet.WebApi.WebHost 4.0.30506.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebPages 2.0.30506.0" Target="Microsoft.Web.Infrastructure 1.0.0.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebPages 2.0.30506.0" Target="Microsoft.AspNet.Razor 2.0.30506.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebPages.Data.zh-Hans 2.0.20710.0" Target="Microsoft.AspNet.WebPages.Data 2.0.20710.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebPages.WebData 2.0.30506.0" Target="Microsoft.AspNet.WebPages.Data 2.0.20710.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebPages.WebData.zh-Hans 2.0.30506.0" Target="Microsoft.AspNet.WebPages.WebData 2.0.30506.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.AspNet.WebPages.zh-Hans 2.0.30506.0" Target="Microsoft.AspNet.WebPages 2.0.30506.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.Data.OData 5.2.0" Target="System.Spatial 5.2.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.Data.OData 5.2.0" Target="Microsoft.Data.Edm 5.2.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.jQuery.Unobtrusive.Ajax 2.0.30506.0" Target="jQuery 1.8.2" Category="程序包依赖项" />
+    <Link Source="Microsoft.jQuery.Unobtrusive.Validation 2.0.30506.0" Target="jQuery.Validation 1.10.0" Category="程序包依赖项" />
+    <Link Source="Microsoft.Net.Http.zh-Hans 2.0.20710.0" Target="Microsoft.Net.Http 2.0.20710.0" Category="程序包依赖项" />
+    <Link Source="0.UI\Peacock.ZXEval.WebSite" Target="ChnCharInfo 1.0.0" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebSite" Target="CRMService 1.0.0.1" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebSite" Target="EntityFramework.zh-Hans 6.1.3" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebSite" Target="ICSharpCode.SharpZipLib.dll 0.85.4.369" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebSite" Target="jQuery.UI.Combined 1.8.24" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebSite" Target="knockoutjs 2.2.0" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebSite" Target="log4net 2.0.5" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebSite" Target="Microsoft.AspNet.Mvc.FixedDisplayModes 1.0.0" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebSite" Target="Microsoft.AspNet.Mvc.zh-Hans 4.0.30506.0" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebSite" Target="Microsoft.AspNet.Razor.zh-Hans 2.0.30506.0" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebSite" Target="Microsoft.AspNet.Web.Optimization.zh-Hans 1.0.0" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebSite" Target="Microsoft.AspNet.WebApi 4.0.30506.0" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebSite" Target="Microsoft.AspNet.WebApi.Client.zh-Hans 4.0.30506.0" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebSite" Target="Microsoft.AspNet.WebApi.Core.zh-Hans 4.0.30506.0" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebSite" Target="Microsoft.AspNet.WebApi.OData.zh-Hans 4.0.30506" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebSite" Target="Microsoft.AspNet.WebApi.WebHost.zh-Hans 4.0.30506.0" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebSite" Target="Microsoft.AspNet.WebPages.Data.zh-Hans 2.0.20710.0" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebSite" Target="Microsoft.AspNet.WebPages.WebData.zh-Hans 2.0.30506.0" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebSite" Target="Microsoft.AspNet.WebPages.zh-Hans 2.0.30506.0" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebSite" Target="Microsoft.International.Converters.PinYinConverter 1.0.0" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebSite" Target="Microsoft.jQuery.Unobtrusive.Ajax 2.0.30506.0" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebSite" Target="Microsoft.jQuery.Unobtrusive.Validation 2.0.30506.0" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebSite" Target="Microsoft.Net.Http.zh-Hans 2.0.20710.0" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebSite" Target="Modernizr 2.6.2" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebSite" Target="NPOI 2.1.3.1" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebSite" Target="NPOI.Excel 2.1.1" Category="安装的程序包" />
+    <Link Source="0.UI\Peacock.ZXEval.WebSite" Target="Peacock.DataBase.DataConvert 1.0.0" Category="安装的程序包" />
+  </Links>
+  <Categories>
+    <Category Id="项目" />
+    <Category Id="包" />
+  </Categories>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="项目" ValueLabel="True">
+      <Condition Expression="HasCategory('项目')" />
+      <Setter Property="Background" Value="Blue" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="程序包依赖项" ValueLabel="True">
+      <Condition Expression="HasCategory('程序包依赖项')" />
+      <Setter Property="Background" Value="Yellow" />
+    </Style>
+  </Styles>
+</DirectedGraph>

@@ -1,0 +1,144 @@
+﻿@using Peacock.Common.Helper
+@using Peacock.ZXEval.Model.DTO
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    var company = (CompanyModel)ViewBag.Company;
+    var user = (UserModel)ViewBag.User;
+    var businissTypes = (IList<string>) ViewBag.BusinessTypes;
+}
+
+<form id="form1">
+    <div class="edit">
+        <div class="panel panel-info">           
+            <div class="panel-body">
+                <table style="width:100%">
+                    <tr>
+                        <td width="12%" class="left blue">公司名称</td>
+                        <td width="21%">
+                            <input id="CompanyName" name="CompanyName" type="text" class="detail-input" value="@company.CompanyName"  />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="12%" class="left blue">用户名称</td>
+                        <td width="21%">
+                            <input id="UserName" name="UserName" type="text" class="detail-input" value="@user.UserName" readonly="readonly" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="left blue">业务类型</td>
+                        <td>
+                            @foreach (var item in (List<EnumEntity>)ViewBag.BusinessType)
+                            {
+                                <lable for="@string.Format("BuninessType_{0}",item.EnumName)">
+                                    <input type="checkbox" id="@string.Format("BuninessType_{0}",item.EnumName)" name="BuninessType" value="@item.EnumName"
+                                        @if (businissTypes.Contains(item.EnumName)) { <text> checked="checked" </text>  } />
+                                    @item.EnumName
+                                </lable>
+                            }
+                        </td>
+                    </tr>
+                     <tr>
+                        <td>手机号码</td>
+                        <td>
+                           <input type="text" name="PhoneNumber"  id="PhoneNumber" value="@user.PhoneNumber" class="detail-input"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="matter-btn">
+            <input type="hidden" id="Id" name="Id" value="@company.Id" />
+            <input type="hidden" id="IsEnabled" name="IsEnabled" value="@string.Format("{0}",company.IsEnabled)" />
+            <input type="hidden" id="CreateTime" name="CreateTime" value="@company.CreateTime" />
+            <button type="button" class="matter-btn-2" id="btn_save">保存</button>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript">
+    var dialog,_dialog;
+    $(function () {
+        $("#form1").validate({
+            onkeyup: false,
+            rules: {
+                BuninessType :{
+                    required: true
+                    },
+                CompanyName: {
+                    required: true,
+                    isNull: true,
+                    minlength: 4,
+                    maxlength: 100
+                },
+                PhoneNumber: {
+                    isMobile: true,
+                    required: true
+                }
+            },
+            message: {
+                CompanyName: {
+                    required: "请输入公司名称",
+                    isNull:"请勿输入空格字符",
+                    minlength: jQuery.validator.format("请输入一个长度最少是{0}的公司名称"),
+                    maxlength: jQuery.validator.format("公司名称的长度不能多于{0}个字符")
+                },
+                BuninessType: {
+                    required: "请选择业务类型"
+                },
+                PhoneNumber: {
+                    required: "请输入手机号码",
+                    isMobile: "请正确填写您的手机号码"
+                }
+            },
+            success: function (label) {
+                if ($("[name=" + $(label).attr("for") + "]").attr("type") == "checkbox") {
+                    $('input[name=' + $(label).attr("for") + ']:last').parent().siblings("label.error").remove();
+                }else{
+                    layer.close(dialog);
+                    $("#" + label[0].htmlFor).removeClass("error-border");
+                }
+            },
+            errorPlacement: function (error, element) {
+                if ($(element).attr("type") == "checkbox") {
+                    var eid = element.attr('name');
+                    $('input[name=' + eid + ']:last').parent().after(error);
+                }else{
+                    $("#" + element[0].id).addClass("error-border");
+                    dialog = layer.tips(error[0].innerHTML, "#" + element[0].id, {
+                        tips: [2, '#F99228']
+                    });
+                }
+            }
+        });
+
+        //保存
+        $("#btn_save").click(function () {
+            if (!$("#form1").valid()) return;
+            var data = $("#form1").serialize();
+            $.ajax({
+                url: '@Url.Action("SaveInfo", "Company")',
+                dataType: "json",
+                type: "post",
+                data: data,
+                beforesend: showLoadingTips(),
+                complete: function () { hideLoadingTips(); },
+                success: function (result) {
+                    if (result.success) {
+                        layer.alert('操作成功', { icon: 1 }, function () {
+                            parent.search();
+                            parent.layer.closeAll();
+                        });
+                    }
+                    else {
+                        layer.alert(result.message, { icon: 2 });
+                    }
+                },
+                error: function () {
+                    layer.alert('操作失败！', { icon: 2 });
+                }
+            });
+        });
+
+    });
+</script>

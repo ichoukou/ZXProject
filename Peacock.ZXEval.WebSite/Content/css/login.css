@@ -1,0 +1,154 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Microsoft YaHei';
+    font-size: 100%;
+    background: #2A83BD;
+}
+
+img {
+    border: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    outline: none;
+    border: 0;
+    cursor: pointer;
+}
+
+.registered-bg {
+    background: #fff;
+}
+  
+.login {
+    overflow: hidden;
+}
+
+.clear {
+    zoom: 1;
+}
+
+    .clear::after {
+        clear: both;
+        content: "";
+    }
+.login-main {
+    margin: 0 auto;
+}
+
+    .login-main .login-main-bg {
+        width: 1200px;
+        height: 565px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+        .login-main .login-main-bg .loginwrap {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -240px;
+            margin-top: -160px;
+        }
+
+            .login-main .login-main-bg .loginwrap .logincontent {
+                width: 480px;
+                background: #f6f7f9;
+                padding: 20px 10px;
+                border-radius: 10px;
+            }
+
+                .login-main .login-main-bg .loginwrap .logincontent .title {
+                    text-align: center;
+                    color: #0067ea;
+                }
+
+                    .login-main .login-main-bg .loginwrap .logincontent .title.sub_title {
+                        margin-top: 10px;
+                    }
+
+                .login-main .login-main-bg .loginwrap .logincontent ul {
+                    list-style: none;
+                    width: 280px;
+                    margin: 0 auto;
+                }
+
+                    .login-main .login-main-bg .loginwrap .logincontent ul li {
+                        margin-top: 20px;
+                    }
+
+                        .login-main .login-main-bg .loginwrap .logincontent ul li .error {
+                            font-size: 13px;
+                            margin-top: 8px;
+                            color: #f32626;
+                            height: 24px;
+                        }
+
+                        .login-main .login-main-bg .loginwrap .logincontent ul li .cnt {
+                            color: #5e5e5e;
+                            font-size: 14px;
+                        }
+
+                        .login-main .login-main-bg .loginwrap .logincontent ul li input.text {
+                            width: 256px;
+                            height: 28px;
+                            line-height: 28px;
+                            border: 1px solid #ddd;
+                            padding-right: 24px;
+                        }
+
+                        .login-main .login-main-bg .loginwrap .logincontent ul li p {
+                            position: relative;
+                        }
+
+                            .login-main .login-main-bg .loginwrap .logincontent ul li p i {
+                                position: absolute;
+                                color: #bbb;
+                                right: 10px;
+                                top: 7px;
+                            }
+
+                        .login-main .login-main-bg .loginwrap .logincontent ul li .cnt .checkedbox {
+                            width: 14px;
+                            height: 14px;
+                            vertical-align: middle;
+                        }
+
+                        .login-main .login-main-bg .loginwrap .logincontent ul li .cnt label {
+                            display: inline;
+                            color: #666;
+                            font-size: 12px;
+                            margin-left: 5px;
+                        }
+
+.btn-login {
+    background: #c5271e;
+    width: 100%;
+    border: 1px solid #711712;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+    color: #fff;
+}
+
+    .btn-login:hover {
+        background: #711712;
+    }
+
+.register {
+    color: #0067eb;
+}

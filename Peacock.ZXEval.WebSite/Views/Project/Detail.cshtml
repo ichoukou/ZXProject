@@ -1,0 +1,209 @@
+﻿@using Peacock.ZXEval.Model.DTO
+@model Peacock.ZXEval.Model.DTO.ProjectModel
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<style>
+    .uploadwrap { padding: 10px; }
+    .uploadwrap .uploadify { margin-bottom: 0;}
+    .uploadwrap .tip { line-height: 30px;}
+    .uploadlist .col-sm-4.col-md-3 { margin-bottom: 12px}
+    .uploadlist .col-sm-4.col-md-3 .thumbnail{ padding: 12px;}
+    .uploadlist .col-sm-4.col-md-3 .thumbnail a {display: block;text-align: center;}    
+    .uploadlist .col-sm-4.col-md-3 .thumbnail img{width: 183px; height: 127px; }    
+    .thumbnail .caption p.f-name{word-break:break-all;height: 40px}
+</style>
+<div class="report-tab">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">项目信息</h3>
+        </div>
+        <div class="panel-body">
+            <table style="width:100%" class="pd">
+                <tr>
+                    <td class="blue" width="12%"><label>评估编号</label></td>
+                    <td width="13%">@Model.ProjectNo</td>
+                    <td class="blue" width="12%"><label>授信客户名称（全称）</label></td>
+                    <td width="13%">@Model.CreditCustomer</td>
+                    <td class="blue" width="12%"><label>拟授信金额（万元）</label></td>
+                    <td colspan="3">@string.Format("{0:f2}",Model.CreditAmount)</td>
+                </tr>
+                <tr>
+                    <td class="blue" width="12%"><label>抵押物详细地址</label></td>
+                    <td colspan="3">@Model.PledgeAddress</td>
+                    <td class="blue" width="12%"><label>客户经理联系电话</label></td>
+                    <td colspan="3">@Model.AccountManagerTel</td>
+                </tr>
+                <tr>
+                    <td class="blue" width="12%"><label>评估范围</label></td>
+                    <td width="13%">@Model.EvalRange</td>
+                    <td class="blue" width="12%"><label>抵质押人名称</label></td>
+                    <td width="13%">@Model.PledgePerson</td>
+                    <td class="blue" width="12%"><label>评估联系人名称</label></td>
+                    <td width="13%">@Model.EvalContractPerson</td>
+                    <td class="blue" width="12%"><label>评估联系电话</label></td>
+                    <td width="13%">@Model.EvalContractTel</td>
+                </tr>
+                <tr>                   
+                    <td class="blue" width="12%"><label>产权证信息（房证号）</label></td>
+                    <td width="13%">@Model.HouseCertInfo</td>
+                    <td class="blue" width="12%"><label>产权证信息（土地证号）</label></td>
+                    <td width="13%">@Model.LandCertInfo</td>
+                    <td class="blue" width="12%"><label>贷款联系人</label></td>
+                    <td width="13%">@Model.LoanPerson</td>
+                    <td class="blue" width="12%"><label>贷款联系人电话</label></td>
+                    <td width="13%">@Model.LoanTel</td>
+                </tr>
+                <tr>
+                    <td class="blue" width="12%"><label>是否在本行首次授信</label></td>
+                    <td width="13%">@if (Model.IsFirstCredit)
+                                    {
+                                        <text>是</text>
+                                    }
+                                    else
+                                    {
+                                        <text>否</text>
+                                    }
+                    </td>
+                    <td class="blue" width="12%"><label>授信品种</label></td>
+                    <td width="13%">@Model.CreditVariety</td>
+                    <td class="blue" width="12%"><label>押品类型</label></td>
+                    <td width="13%">@Model.PropertyType</td>
+                    <td class="blue" width="12%"><label>所属机构</label></td>
+                    <td width="13%">@Model.Company.CompanyName</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">流程跟进</h3>
+        </div>
+        <div class="panel-body">
+            <table id="processInfo" width="100%" border="0" cellspacing="0" cellpadding="0" class="project-info-xx">
+                <tr>
+                    <td class="blue" width="25%">操作人 </td>
+                    <td class="blue" width="25%">跟进信息 </td>
+                    <td class="blue" width="25%">反馈内容 </td>
+                    <td class="blue" width="25%">操作时间</td>
+                </tr>
+                @foreach (var item in Model.ProjectStateInfos.OrderByDescending(x=>x.OperationTime))
+                {
+                    <tr>
+                        <td>@item.Operator</td>
+                        <td>@item.Content</td>
+                        <td>@item.Note</td>
+                        <td>@string.Format("{0:yyyy-MM-dd HH:mm:ss}",item.OperationTime)</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">报告上传记录</h3>
+        </div>
+        <div class="panel-body sm">
+            <div style="width:96%;margin:0 auto;">
+                <table id="table"></table>
+            </div>
+        </div>
+    </div>
+    
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">附件信息</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row uploadlist">
+                @foreach (var resource in Model.ProjectResources.Where(x=>x.ResourcesType==ResourcesEnum.附件))
+                {
+                    <div class="col-sm-4 col-md-3">
+                        <div class="thumbnail">
+                            <a href="@resource.FilePath" target="_blank"><img src="@resource.FilePath" alt="@resource.FileName"></a>
+                            <div class="caption f-tc">
+                                <p class="f-name">@resource.FileName</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#table').bootstrapTable({
+            url: '/Project/GetReportList', //请求后台的URL（*）
+            method: 'post', //请求方式（*）
+            striped: true, //是否显示行间隔色
+            cache: false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+            sortable: false, //是否启用排序
+            sortOrder: "asc", //排序方式
+            queryParams: function (params) {
+                return {
+                    id: '@Model.Id'
+                };
+            }, //传递参数（*）
+            sidePagination: "client", //分页方式：client客户端分页，server服务端分页（*）
+            pageNumber: 1, //初始化加载第一页，默认第一页
+            pageSize: 10, //每页的记录行数（*）
+            pageList: [10, 25, 50, 100], //可供选择的每页的行数（*）
+            strictSearch: true,
+            height: 'auto', //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+            uniqueId: "Id", //每一行的唯一标识，一般为主键列
+            cardView: false, //是否显示详细视图
+            detailView: false, //是否显示父子表
+            columns: [
+                {
+                    field: 'Number',
+                    title: '序号',
+                    formatter: function (value, row, index) {
+                        return index + 1;
+                    },
+                    width: '4%'
+                },
+                {
+                    title: '文件名',
+                    field: 'FileName',
+                    align: 'left',
+                    valign: 'middle',
+                    width: '20%'
+                },
+                {
+                    title: '报告类型',
+                    field: 'ResourcesType',
+                    align: 'left',
+                    valign: 'middle',
+                    width: '10%'
+                },
+                {
+                    title: '上传时间',
+                    field: 'CreateTime',
+                    align: 'left',
+                    valign: 'middle',
+                    width: '11%'
+                },
+                {
+                    title: '是否当前报告',
+                    field: 'IsLast',
+                    align: 'center',
+                    valign: 'middle',
+                    width: '8%'
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    valign: 'middle',
+                    width: '10%',
+                    formatter: function (value, row, index) {
+                        var a = "<a href=\"" + row.FilePath + "\">下载</a>";
+                        return a;
+                    }
+                }
+            ]
+        });
+    });
+</script>

@@ -1,0 +1,511 @@
+﻿@using Peacock.ZXEval.Model.DTO
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<div class="report-tab" style="padding-bottom: 0;">
+    <form id="searchinfo">
+        <table border="0" cellspacing="0" cellpadding="0" class="report">
+            <tr>
+                <td>流水号：</td>
+                <td><input type="text" class="business-input" name="ProjectNo" id="ProjectNo" /></td>
+                <td>押品地址：</td>
+                <td colspan="3"><input type="text" class="business-input" name="PledgeAddress" id="PledgeAddress" style="width: 250px"/></td>
+                <td>业务类型：</td>
+                <td>
+                    <select class="form-control" id="EvalType" name="EvalType">
+                        <option value="">全部</option>
+                        <option value="对公业务">对公业务</option>
+                        <option value="零售业务">零售业务</option>
+                    </select>
+                </td>
+                <td>押品类型：</td>
+                <td>
+                    <select class="form-control" id="PropertyType" name="PropertyType">
+                        <option value="">全部</option>
+                        <option value="办公">办公</option>
+                        <option value="工业厂房">工业厂房</option>
+                        <option value="工业用地">工业用地</option>
+                        <option value="股权">股权</option>
+                        <option value="其他商业用房">其他商业用房</option>
+                        <option value="其他用地">其他用地</option>
+                        <option value="商品房">商品房</option>
+                        <option value="商铺">商铺</option>
+                        <option value="商业用地">商业用地</option>
+                        <option value="设备">设备</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>当前进度：</td>
+                <td>
+                    <select class="form-control" id="ProjectStatus" name="ProjectStatus">
+                        <option value="">全部</option>
+                        @foreach (var status in ViewBag.Status)
+                        {
+                            <option value="@status.Key">@status.Value</option>
+                        }
+                    </select>
+                </td>
+                <td>委托时间：</td>
+                <td colspan="3">
+                    <input type ="text" class="detail-input  laydate-icon" id="CreateTimeFrom" name="CreateTimeFrom" style="width: 120px" />
+                    至
+                    <input type="text" class="detail-input laydate-icon" id="CreateTimeTo" name="CreateTimeTo" style="width: 120px" />
+                </td>
+                <td></td>
+                <td><button type="button" class="business-btn-1" name="search" id="search">查询</button>
+                    <input type="reset" class="btn btn-sm btn-add" value="重置" id=""></td>
+            </tr>
+        </table>
+    </form>
+    <div id="tablelist" class="tablelist">
+        <table id="table"></table>
+    </div>
+</div>
+
+<input type="hidden" id="hiddenProjectId" />
+
+<!--业务受理-->
+<form id="frmAccept" class="layer_feedback" style="display: none;">
+    <h2><span>业务受理</span><i class="fa fa-close pull-right" onclick="cancel()"></i></h2>
+    <table>
+         <tr style="height: 18px;"></tr>
+        <tr>
+            <td class="left font_s_14" style="width:120px;">评估编号</td>
+            <td>
+                <label id="ProjectNo_Accept"></label>
+            </td>
+        </tr>        
+        <tr>
+            <td class="left font_s_14" style="width:120px;">反馈内容</td>
+            <td style="width: 260px;">
+                <textarea rows="4" class="tc_textarea" id="Note_Accept" name="Note_Accept" maxlength="250"></textarea>
+            </td>
+        </tr>  
+        <tr style="height: 18px;"></tr>     
+        <tr><td colspan="3" class="f-tc"><button class="btn-blue" id="btnSaveAccept">确定</button></td><td></td></tr>
+    </table>
+</form>
+
+<!--填写外业勘查信息-->
+<form id="frmOuterTask" class="layer_feedback" style="display: none;">
+    <h2><span>外业勘查</span><i class="fa fa-close pull-right" onclick="cancel()"></i></h2>   
+    <table>
+         <tr style="height: 18px;"></tr>        
+        <tr>
+            <td class="left font_s_14" style="width:120px;">评估编号</td>
+            <td>
+                <label id="ProjectNo_OuterTask"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="left font_s_14" style="width:120px;">预约时间</td>
+            <td style="width: 260px;">
+                <input type="text" class="detail-input laydate-icon" readonly id="AppointmentDate" name="AppointmentDate" />
+            </td>
+        </tr>
+        <tr>
+            <td class="left font_s_14" style="width:120px;">完成时间</td>
+            <td style="width: 260px;">
+                <input type="text" class="detail-input laydate-icon" readonly id="FinishDate" name="FinishDate" />
+            </td>
+        </tr>
+        <tr>
+            <td class="left font_s_14" style="width:120px;">反馈内容</td>
+            <td style="width: 260px;">
+                <textarea rows="4" class="tc_textarea" id="Note_OuterTask" name="Note_OuterTask" maxlength="250"></textarea>
+            </td>
+        </tr>  
+        <tr style="height: 18px;"></tr>
+        <tr><td colspan="3" class="f-tc">
+                <button class="btn-blue" id="btnSaveOuterTask">确定</button>
+            </td><td></td></tr>
+    </table>
+</form>
+
+<!--报告准备-->
+<form id="frmReportPrepare" class="layer_feedback" style="display: none;">
+    <h2><span>报告准备</span><i class="fa fa-close pull-right" onclick="cancel()"></i></h2>
+    <table>
+        <tr style="height: 18px;"></tr>
+        <tr>
+            <td class="left font_s_14" style="width:120px;">评估编号</td>
+            <td>
+                <label id="ProjectNo_ReportPrepare"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="left font_s_14" style="width:120px;">反馈内容</td>
+            <td style="width: 260px;">
+                <textarea rows="4" class="tc_textarea" id="Note_ReportPrepare" name="Note_ReportPrepare" maxlength="250"></textarea>
+            </td>
+        </tr> 
+        <tr style="height: 18px;"></tr>
+        <tr><td colspan="3" class="f-tc"><button class="btn-blue" id="btnSaveReportPrepare">确定</button></td><td></td></tr>
+    </table>
+</form>
+
+<script type="text/javascript">
+    var index, dialog, confirm;
+    var pageIndex, pageRows;
+
+    $(function() {
+        $("#search").bind("click", function() { search(0, 0); });
+        tableint(0, 0);
+
+        $("#btnSaveAccept").on("click",AcceptSave);
+        $("#btnSaveOuterTask").on("click", OuterTaskSave);
+        $("#btnSaveReportPrepare").on("click", ReportPrepareSave);
+    });
+
+
+    var AppointmentDate = {
+        elem: '#AppointmentDate',
+        format: 'YYYY-MM-DD hh:mm:ss',
+        //min: laydate.now(),
+        istoday: true,
+        istime: true,
+        choose: function (datas) {
+            AppointmentDate.min = datas; //开始日选好后，重置结束日的最小日期
+        }
+    };
+    laydate(AppointmentDate);
+
+
+    var FinishDate = {
+        elem: '#FinishDate',
+        format: 'YYYY-MM-DD hh:mm:ss',
+        //min: laydate.now(),
+        istoday: true,
+        istime: true,
+        choose: function (datas) {
+            FinishDate.min = datas; //开始日选好后，重置结束日的最小日期
+        }
+    };
+    laydate(FinishDate);
+
+    //委托开始日期
+    var CreateTimeFrom = {
+        elem: '#CreateTimeFrom',
+        format: 'YYYY-MM-DD',
+        istoday: true,
+        istime: true
+    };
+    laydate(CreateTimeFrom);
+
+    //委托结束日期
+    var CreateTimeTo = {
+        elem: '#CreateTimeTo',
+        format: 'YYYY-MM-DD',
+        istoday: true,
+        istime: true
+    };
+    laydate(CreateTimeTo);
+
+    function search(indexParam, rowsParam) {
+        $('#table').bootstrapTable("destroy");
+        if (indexParam == null && rowsParam == null) {
+            indexParam = pageIndex;
+            rowsParam = pageRows;
+        }
+        tableint(indexParam, rowsParam);
+    }
+
+    //列表初始化
+    function tableint(indexParam, rowsParam) {
+        $('#table').bootstrapTable({
+            url: '/Project/GetProjectList', //请求后台的URL（*）
+            method: 'post', //请求方式（*）
+            toolbar: '#toolbar', //工具按钮用哪个容器
+            striped: true, //是否显示行间隔色
+            cache: false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+            pagination: true, //是否显示分页（*）
+            sortable: false, //是否启用排序
+            sortOrder: "asc", //排序方式
+            queryParams: function (params) {
+                pageIndex = params.offset / params.limit + 1;
+                pageRows = params.limit;
+                return {
+                    ProjectNo: $("#ProjectNo").val(),
+                    PledgeAddress: $("#PledgeAddress").val(),
+                    ProjectStatus: $("#ProjectStatus").val(),
+                    EvalType: $("#EvalType").val(),
+                    PropertyType: $("#PropertyType").val(),
+                    CreateTimeFrom: $("#CreateTimeFrom").val(),
+                    CreateTimeTo: $("#CreateTimeTo").val(),
+                    index: params.offset / params.limit + 1, //页码
+                    rows: params.limit, //页面大小
+                };
+            }, //传递参数（*）
+            sidePagination: "server", //分页方式：client客户端分页，server服务端分页（*）
+            pageNumber: indexParam == 0 ? 1 : indexParam, //初始化加载第一页，默认第一页
+            pageSize: rowsParam == 0 ? 10 : rowsParam, //每页的记录行数（*）
+            pageList: [10, 25, 50, 100], //可供选择的每页的行数（*）
+            strictSearch: true,
+            clickToSelect: true, //是否启用点击选中行
+            height: 'auto', //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+            uniqueId: "Id", //每一行的唯一标识，一般为主键列
+            cardView: false, //是否显示详细视图
+            detailView: false, //是否显示父子表
+            columns: [{
+                field: 'Number',
+                title: '序号',
+                align: 'center',
+                valign: 'middle',
+                formatter: function (value, row, index) {
+                    return index+1;
+                },
+                width: '4%'
+            },
+                {
+                    title: '流水号',
+                    field: 'ProjectNo',
+                    align: 'left',
+                    valign: 'middle',
+                    width: '10%'
+                },
+                {
+                    title: '押品地址',
+                    field: 'PledgeAddress',
+                    align: 'left',
+                    valign: 'middle',
+                    width: '21%'
+                },
+                {
+                    title: '业务类型',
+                    field: 'EvalType',
+                    align: 'left',
+                    valign: 'middle',
+                    width: '8%'
+                },
+                {
+                    title: '押品类型',
+                    field: 'PropertyType',
+                    align: 'left',
+                    valign: 'middle',
+                    width: '8%'
+                },
+                {
+                    title: '委托时间',
+                    field: 'CreateTime',
+                    align: 'left',
+                    valign: 'middle',
+                    width: '11%'
+                },
+                {
+                    title: '当前进度',
+                    field: 'ProjectStatus',
+                    align: 'left',
+                    valign: 'middle',
+                    width: '8%'
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    valign: 'middle',
+                    width: '40%',
+                    formatter: function(value, row, index) {
+                        var a = '';
+                        if (row.ProjectStatus == '@ProjectStatusEnum.未受理.ToString()') {
+                            a = '<a href="javascript:void(0);"  onclick=acceptProject("' + row.Id + '","' + row.ProjectNo + '")>业务受理</a>&nbsp;';
+                        } else if (row.ProjectStatus == '@ProjectStatusEnum.已撤单.ToString()') {
+                            a = '撤单原因：' + (row.RevokeReason == null ? '无' : row.RevokeReason);
+                        } else if (row.ProjectStatus == '@ProjectStatusEnum.发送报告.ToString()') {
+                            a = '<a href="javascript:void(0);"  onclick=operateReportSend("' + row.Id + '","' + row.ProjectNo + '")>发送报告</a>&nbsp;';
+                        } else {
+                            a += '<a href="javascript:void(0);"  onclick=operateOuterTask("' + row.Id + '","' + row.ProjectNo + '")>外业勘察</a>&nbsp;';
+                            a += '<a href="javascript:void(0);"  onclick=operateReportEstimate("' + row.Id + '","' + row.ProjectNo + '")>报告预估</a>&nbsp;';
+                            a += '<a href="javascript:void(0);"  onclick=operateReportPrepare("' + row.Id + '","' + row.ProjectNo + '")>报告准备</a>&nbsp;';
+                            //a += '<a href="javascript:void(0);"  onclick=operateReportAudit("' + row.Id + '","' + row.ProjectNo + '")>报告审核</a>&nbsp;';
+                            a += '<a href="javascript:void(0);"  onclick=operateReportSend("' + row.Id + '","' + row.ProjectNo + '")>发送报告</a>&nbsp;';
+                        }
+                        var b = '| <a href="javascript:void(0);"  onclick=viewProject("' + row.Id + '","' + row.ProjectNo + '")>查看详细</a>&nbsp;';
+                        b += '| <a href="javascript:void(0);"  onclick=downloadFile("' + row.Id + '","' + row.ProjectNo + '")>下载附件</a>&nbsp;';
+                        if (row.CanDownLoadSummaryData) {
+                            b += '| <a href="javascript:void(0);"  onclick=downLoadSummaryData("' + row.Id + '","' + row.ProjectNo + '")>导出汇总数据</a>&nbsp;';
+                        }
+                        return a + b;
+                    }
+                }
+            ],
+            onLoadSuccess: function() {
+                $('#searchBtn').attr("disabled", false);
+            },
+            onLoadError: function() {
+                $('#searchBtn').attr("disabled", false);
+            }
+        });
+    }
+
+    //业务受理
+    function acceptProject(id, projectNo) {
+        $("#hiddenProjectId").val(id);
+        $("#ProjectNo_Accept").text(projectNo);
+        $("#Note_Accept").val("");
+        dialog = layer.open({
+            type: 1,
+            shade: [0.3, "#070707"],
+            closeBtn: 0,
+            area: ['450px', '300px'],
+            title: false, //不显示标题
+            content: $('#frmAccept'), //捕获的元素
+        });   
+    }
+
+    //外业勘察
+    function operateOuterTask(id, projectNo) {
+        $("#hiddenProjectId").val(id);
+        $("#ProjectNo_OuterTask").text(projectNo);
+        $("#Note_OuterTask").val("");
+        dialog = layer.open({
+            type: 1,
+            shade: [0.3, "#070707"],
+            closeBtn: 0,
+            area: ['450px', '340px'],
+            title: false, //不显示标题
+            content: $('#frmOuterTask'), //捕获的元素
+        });   
+    }
+
+    //报告准备
+    function operateReportPrepare(id, projectNo) {
+        $("#hiddenProjectId").val(id);
+        $("#ProjectNo_ReportPrepare").text(projectNo);
+        $("#Note_ReportPrepare").val("");
+        dialog = layer.open({
+            type: 1,
+            shade: [0.3, "#070707"],
+            closeBtn: 0,
+            area: ['450px', '300px'],
+            title: false, //不显示标题
+            content: $('#frmReportPrepare'), //捕获的元素
+        });   
+    }
+
+    //报告预估
+    function operateReportEstimate(id, projectNo) {
+        parent.changeIframe('SummaryData_Project', '报告预估' + projectNo, '@Url.Content("~/Project/SummaryData?projectId=")' + id + '&operateType=报告预估');
+    }
+
+       
+    //发送报告
+    function operateReportSend(id, projectNo) {
+        parent.changeIframe('SummaryData_Project', '发送报告' + projectNo, '@Url.Content("~/Project/SummaryData?projectId=")' + id + '&operateType=发送报告');
+    }
+
+    //业务受理保存
+    function AcceptSave() {
+        $.ajax({
+            url: '/Project/AcceptProject',
+            dataType: "json",
+            type: "post",
+            data: {
+                id: $("#hiddenProjectId").val(),
+                note:$('#Note_Accept').val()
+            },
+            beforesend: showLoadingTips(),
+            complete: function() { hideLoadingTips(); },
+            success: function(result) {
+                if (result.success) {
+                    layer.alert('操作成功', { icon: 1 },function() {
+                        layer.closeAll();
+                        search();
+                    });                  
+                } else {
+                    layer.alert(result.message, { icon: 2 });
+                }
+            },
+            error: function() {
+                layer.alert('操作失败！', { icon: 2 });
+            }
+        }); 
+        return false;
+    }
+
+    //外业勘察保存
+    function OuterTaskSave() {
+        $.ajax({
+            type: "post",
+            url: "/Project/OperateOuterTask",
+            data: {
+                projectId: $("#hiddenProjectId").val(),
+                AppointmentDate: $("#AppointmentDate").val(),
+                FinishDate: $("#FinishDate").val(),
+                note:$('#Note_OuterTask').val()
+            },
+            beforesend: showLoadingTips(),
+            complete: function () { hideLoadingTips(); },
+            success: function (result) {
+                if (result.success) {
+                    layer.alert('操作成功', { icon: 1 },function() {
+                        layer.closeAll();
+                        search();
+                    });                   
+                }
+                else {
+                    layer.alert(result.message, { icon: 2 });
+                }
+            },
+            error: function () {
+                layer.alert('操作失败！', { icon: 2 });
+            }
+        });
+        return false;
+    }
+
+    //报告准备保存
+    function ReportPrepareSave() {
+        $.ajax({
+            url: '/Project/OperateReportPrepare',
+            dataType: "json",
+            type: "post",
+            data: {
+                id: $("#hiddenProjectId").val(),
+                note:$('#Note_ReportPrepare').val()
+            },
+            beforesend: showLoadingTips(),
+            complete: function () { hideLoadingTips(); },
+            success: function (result) {
+                if (result.success) {
+                    layer.alert('操作成功', { icon: 1 },function() {
+                        layer.closeAll();
+                        search();
+                    });  
+                }
+                else {
+                    layer.alert(result.message, { icon: 2 });
+                }
+            },
+            error: function () {
+                layer.alert('操作失败！', { icon: 2 });
+            }
+        });
+        return false;
+    }
+
+    //查看详细
+    function viewProject(id, projectNo) {
+        parent.changeIframe('Detail_Project', '查看详细' + projectNo, '@Url.Content("~/Project/Detail?id=")' + id);
+    }
+
+    //下载附件
+    function downloadFile(id, projectNo) {
+        showLoadingTips();
+        window.location.href = "@Url.Content("~/Project/DownLoadFile?projectId=")" + id + "&ProjectNo=" + projectNo;
+        hideLoadingTips();
+    }
+
+    //导出汇总数据
+    function downLoadSummaryData(id, projectNo) {
+        showLoadingTips();
+        window.location.href = "@Url.Content("~/Project/DownLoadSummaryData?projectId=")" + id + "&ProjectNo=" + projectNo;
+        hideLoadingTips();
+    }
+
+    //关闭
+    function cancel() {      
+        layer.close(dialog);
+    }
+</script>

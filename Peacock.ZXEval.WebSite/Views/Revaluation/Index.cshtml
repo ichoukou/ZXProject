@@ -1,0 +1,801 @@
+﻿@using Peacock.ZXEval.Model.DTO
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<div class="inquiry-info ck-report">
+    <div class="inquiry-info-list">
+        <ul class="f-cf">
+            <li><a href="javascript:void(0);" class="current">批量复估</a></li>
+            <li><a href="javascript:void(0);">复估异议</a></li>
+        </ul>
+    </div>
+    <div class="inquiry-info-tab">
+        <div style="display: block; ">
+            <div class="report-tab" style="padding-left:0px">
+                <form class="form-inline" id="searchRevaluationInfo">
+                    <table border="0" cellspacing="0" cellpadding="0" class="report">
+                        <tr>
+                            <td>复估单号：</td>
+                            <td><input type="text" class="business-input" name="RevaluationNo" id="RevaluationNo" /></td>
+                            <td>业务类型：</td>
+                            <td>
+                                <select class="form-control" id="EvalType" name="EvalType">
+                                    <option value="">全部</option>
+                                    <option value="对公业务">对公业务</option>
+                                    <option value="零售业务">零售业务</option>
+                                </select>
+                            </td>
+                            <td>当前进度：</td>
+                            <td>
+                                <select class="form-control" id="RevaluationStatus" name="RevaluationStatus">
+                                    <option value="">全部</option>
+                                    @foreach (var status in ViewBag.Status)
+                                    {
+                                        <option value="@status.Key">@status.Value</option>
+                                    }
+                                </select>
+                            </td>
+                            <td>复估名称：</td>
+                            <td colspan="3"><input type="text" class="business-input" name="RevaluationName" id="RevaluationName" style="width: 250px" /></td>
+                        </tr>
+                        <tr>
+                            <td>委托时间：</td>
+                            <td colspan="3">
+                                <input type="text" class="detail-input  laydate-icon" id="CreateTimeFrom" name="CreateTimeFrom" style="width: 142px" />
+                                至
+                                <input type="text" class="detail-input laydate-icon" id="CreateTimeTo" name="CreateTimeTo" style="width: 142px" />
+                            </td>
+                            <td colspan="4"><button type="button" class="business-btn-1" name="searchRevaluation" id="searchRevaluation">查询</button>  <input type="reset" class="btn btn-sm btn-add" value="重置" id=""></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <table id="revaluationTable"></table>
+        </div>
+        <div>
+            <div class="report-tab" style="padding-left:0px">
+                <form class="form-inline" id="searchConsultInfo">
+                    <table border="0" cellspacing="0" cellpadding="0" class="report">
+                        <tr>
+                            <td>流水号：</td>
+                            <td><input type="text" class="business-input" name="ProjectNo" id="ProjectNo" /></td>
+                            <td>业务类型：</td>
+                            <td>
+                                <select class="form-control" id="EvalType1" name="EvalType1">
+                                    <option value="">全部</option>
+                                    <option value="对公业务">对公业务</option>
+                                    <option value="零售业务">零售业务</option>
+                                </select>
+                            </td>
+                            <td>押品类型：</td>
+                            <td>
+                                <select class="form-control" id="input_PropertyType" name="input_PropertyType">
+                                    <option value="">全部</option>
+                                    <option value="办公">办公</option>
+                                    <option value="工业厂房">工业厂房</option>
+                                    <option value="工业用地">工业用地</option>
+                                    <option value="股权">股权</option>
+                                    <option value="其他商业用房">其他商业用房</option>
+                                    <option value="其他用地">其他用地</option>
+                                    <option value="商品房">商品房</option>
+                                    <option value="商铺">商铺</option>
+                                    <option value="商业用地">商业用地</option>
+                                    <option value="设备">设备</option>
+                                </select>
+                            </td>
+                            <td>押品地址：</td>
+                            <td><input type="text" class="business-input" name="input_PledgeAddress" id="input_PledgeAddress" style="width: 250px" /></td>
+                        </tr>
+                        <tr>
+                            <td>重估时点：</td>
+                            <td colspan="3">
+                                <input type="text" class="detail-input  laydate-icon" id="RevaluationTimeFrom" name="RevaluationTimeFrom" style="width: 142px" />
+                                至
+                                <input type="text" class="detail-input laydate-icon" id="RevaluationTimeTo" name="RevaluationTimeTo" style="width: 142px" />
+                            </td>
+                            <td colspan="4"><button type="button" class="business-btn-1" name="searchConsult" id="searchConsult">查询</button>   <input type="reset" class="btn btn-sm btn-add" value="重置" id=""></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <table id="consultTable"></table>
+        </div>
+    </div>
+</div>
+
+<form id="approveForm" class="layer_feedback" style="display: none;" enctype="multipart/form-data">
+    <h2><span id="tipsSpan">回复复估异议</span><i class="fa fa-close pull-right" onclick="cancel()"></i></h2>
+    <input type="hidden" id="hiddenRevaluationItemId" />
+    <table>
+        <tr style="height: 18px;"></tr>
+        @*<tr>
+            <td class="left font_s_14" style="width:120px;">是否认可</td>
+            <td style="width: 260px;height: 50px">
+                <select id="input_IsApprove" name="input_IsApprove" class="detail-input">
+                    <option value=""></option>
+                    <option value="true">是</option>
+                    <option value="false">否</option>
+                </select>
+            </td>
+        </tr>*@
+        <tr>
+            <td class="left font_s_14" style="width:120px;">回复信息</td>
+            <td style="width: 260px; height: 80px">
+                <textarea id="input_ConsultReply" name="input_ConsultReply" class="tc_textarea" style="height: 100%"></textarea>
+            </td>
+        </tr>
+        <tr style="height: 18px;"></tr>
+        <tr><td colspan="3" class="f-tc"><button class="btn-blue" id="submitApprove">保存</button></td><td></td></tr>
+    </table>
+</form>
+
+<form id="detailForm" class="layer_feedback" style="display: none;" enctype="multipart/form-data">
+    <h2><span id="tipsSpan1">查看项目详情</span><i class="fa fa-close pull-right" onclick="cancel1()"></i></h2>
+    <table class="border-inpt">
+        <tr style="height: 18px;"></tr>
+        <tr>
+            <td class="left font_s_14 blue">经营机构</td>
+            <td colspan="3">
+                <input type="text" class="business-input" name="OperationOrganization" id="OperationOrganization" readonly="readonly" />
+            </td>
+        </tr>
+        <tr>
+            <td class="left font_s_14 blue">管户客户经理</td>
+            <td>
+                <input type="text" class="business-input" name="CustomerAccountManager" id="CustomerAccountManager" readonly="readonly" />
+            </td>
+            <td class="left font_s_14 blue">联系电话</td>
+            <td>
+                <input type="text" class="business-input" name="ContactNumber" id="ContactNumber" readonly="readonly" />
+            </td>
+        </tr>
+        <tr>
+            <td class="left font_s_14 blue">协议号</td>
+            <td>
+                <input type="text" class="business-input" name="ProtocolNumber" id="ProtocolNumber" readonly="readonly" />
+            </td>
+            <td class="left font_s_14 blue">客户号</td>
+            <td>
+                <input type="text" class="business-input" name="CustomerNumber" id="CustomerNumber" readonly="readonly" />
+            </td>
+        </tr>
+        <tr>
+            <td class="left font_s_14 blue">押品地址</td>
+            <td colspan="3">
+                <input type="text" class="business-input" name="PledgeAddress" id="PledgeAddress" readonly="readonly" />
+            </td>
+        </tr>
+        <tr>
+            <td class="left font_s_14 blue">押品类型</td>
+            <td>
+                <input type="text" class="business-input" name="PropertyType" id="PropertyType" readonly="readonly" />
+            </td>
+            <td class="left font_s_14 blue">借款人名称</td>
+            <td>
+                <input type="text" class="business-input" name="BorrowerName" id="BorrowerName" readonly="readonly" />
+            </td>
+        </tr>
+        <tr>
+            <td class="left font_s_14 blue">初估价值(元)</td>
+            <td>
+                <input type="text" class="business-input" name="InitialEstimateValue" id="InitialEstimateValue" readonly="readonly" />
+            </td>
+            <td class="left font_s_14 blue">初估时间</td>
+            <td>
+                <input type="text" class="business-input" name="InitialEstimateTime" id="InitialEstimateTime" readonly="readonly" />
+            </td>
+        </tr>
+        <tr>
+            <td class="left font_s_14 blue">复估价值(元)</td>
+            <td>
+                <input type="text" class="business-input" name="RevaluationValue" id="RevaluationValue" readonly="readonly" />
+            </td>
+            <td class="left font_s_14 blue">复估时点</td>
+            <td>
+                <input type="text" class="business-input" name="RevaluationTime" id="RevaluationTime" readonly="readonly" />
+            </td>
+        </tr>
+        <tr>
+            <td class="left font_s_14 blue">变动说明</td>
+            <td colspan="3">
+                <div id="ChangeDescription" class="moreline"></div>
+                @*<textarea id="ChangeDescription" name="ChangeDescription" class="tc_textarea" style="height: 100%" readonly="readonly" ></textarea>*@
+            </td>
+        </tr>
+        <tr>
+            <td class="left font_s_14 blue">备注</td>
+            <td colspan="3">
+                <div id="Remark" class="moreline"></div>
+                @*<textarea id="Remark" name="Remark" class="tc_textarea" style="height: 100%"></textarea>*@
+            </td>
+        </tr>
+        @*<tr id="hiddenTR1" style="display:none">
+            <td class="left font_s_14 blue">是否认可</td>
+            <td colspan="3">
+                <input type="text" class="business-input" name="IsApprove" id="IsApprove" readonly="readonly" />
+            </td>
+        </tr>*@
+        <tr id="hiddenTR2" style="display:none">
+            <td class="left font_s_14 blue">回复信息</td>
+            <td colspan="3">
+                <div id="ConsultReply" class="moreline"></div>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<script type="text/javascript">
+    var index, confirm, dialog;
+    var revaluationIndex, revaluationRows;
+    var consultIndex, consultRows;
+    var tebValue = 0;
+    $(function () {
+        //tab切换
+        $('.inquiry-info-list li a').click(function () {
+            $('.inquiry-info-list li a').addClass("current");
+            $(this).parent().siblings(".inquiry-info-list li").children("a").removeClass("current");
+            $(".inquiry-info-tab > div").hide().eq($('.inquiry-info-list li a').index(this)).show();
+            if ($(this).text() == "复估异议") {
+                tebValue = 1;
+            } else {
+                tebValue = 0;
+            }
+        });
+        if (tebValue == '1') {
+            $('.inquiry-info-list ul li:first-child').children("a").removeClass("current");
+            $('.inquiry-info-list ul li:first-child').siblings().children("a").addClass("current");
+            $(".inquiry-info-tab > div").show().eq(0).hide();
+        }
+        $("#searchRevaluation").bind("click", function () { search(0, 0); });
+        revaluationTableInit(0, 0);
+        $("#searchConsult").bind("click", function () { searchConsult(0, 0); });
+        consultTableInit(0, 0);
+
+        //提交复估异议
+        $("#submitApprove").on("click", function () {
+            if (!$("#approveForm").valid()) return false;
+            var options = {
+                url: '@Url.Action("ApproveRevaluationItem", "Revaluation")',
+                dataType: "json",
+                type: "post",
+                data: {
+                    TID: $("#hiddenRevaluationItemId").val(),
+                    IsApprove: true,
+                    ConsultReply: $("#input_ConsultReply").val()
+                },
+                beforesend: showLoadingTips(),
+                complete: function () { hideLoadingTips(); },
+                success: function (result) {
+                    if (result.success) {
+                        layer.alert('操作成功', { icon: 1 });
+                        cancel();
+                        searchConsult();
+                    } else {
+                        layer.alert(result.message, { icon: 2 });
+                    }
+                },
+                error: function () {
+                    layer.alert('操作失败！', { icon: 2 });
+                }
+            };
+            $("#approveForm").ajaxSubmit(options);
+            return false; //阻止form提交
+        });
+    });
+
+    //委托开始日期
+    var CreateTimeFrom = {
+        elem: '#CreateTimeFrom',
+        format: 'YYYY-MM-DD',
+        istoday: true,
+        istime: true
+    };
+    laydate(CreateTimeFrom);
+
+    //委托结束日期
+    var CreateTimeTo = {
+        elem: '#CreateTimeTo',
+        format: 'YYYY-MM-DD',
+        istoday: true,
+        istime: true
+    };
+    laydate(CreateTimeTo);
+
+    //复估开始日期
+    var RevaluationTimeFrom = {
+        elem: '#RevaluationTimeFrom',
+        format: 'YYYY-MM-DD',
+        istoday: true,
+        istime: true
+    };
+    laydate(RevaluationTimeFrom);
+
+    //复估结束日期
+    var RevaluationTimeTo = {
+        elem: '#RevaluationTimeTo',
+        format: 'YYYY-MM-DD',
+        istoday: true,
+        istime: true
+    };
+    laydate(RevaluationTimeTo);
+
+    //搜索批量复估列表
+    function search(indexParam, rowsParam) {
+        $('#revaluationTable').bootstrapTable("destroy");
+        if (indexParam == null && rowsParam == null) {
+            indexParam = revaluationIndex;
+            rowsParam = revaluationRows;
+        }
+        revaluationTableInit(indexParam, rowsParam);
+    }
+
+    //批量复估列表加载数据
+    function revaluationTableInit(indexParam, rowsParam) {
+        $("#revaluationTable").bootstrapTable({
+            url: '/Revaluation/GetRevaluationList', //请求后台的URL（*）
+            method: 'post', //请求方式（*）
+            toolbar: '#toolbar', //工具按钮用哪个容器
+            striped: true, //是否显示行间隔色
+            cache: false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+            pagination: true, //是否显示分页（*）
+            sortable: false, //是否启用排序
+            sortOrder: "asc", //排序方式
+            queryParams: function (params) {
+                revaluationIndex = params.offset / params.limit + 1;
+                revaluationRows = params.limit;
+                return {
+                    RevaluationNo: $("#RevaluationNo").val(),
+                    RevaluationName: $("#RevaluationName").val(),
+                    EvalType: $("#EvalType").val(),
+                    RevaluationStatus: $("#RevaluationStatus").val(),
+                    CreateTimeFrom: $("#CreateTimeFrom").val(),
+                    CreateTimeTo: $("#CreateTimeTo").val(),
+                    index: params.offset / params.limit + 1, //页码
+                    rows: params.limit, //页面大小
+                };
+            }, //传递参数（*）
+            sidePagination: "server", //分页方式：client客户端分页，server服务端分页（*）
+            pageNumber: indexParam == 0 ? 1 : indexParam, //初始化加载第一页，默认第一页
+            pageSize: rowsParam == 0 ? 10 : rowsParam, //每页的记录行数（*）
+            pageList: [10, 25, 50, 100], //可供选择的每页的行数（*）
+            strictSearch: true,
+            clickToSelect: true, //是否启用点击选中行
+            height: 'auto', //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+            uniqueId: "TId", //每一行的唯一标识，一般为主键列
+            cardView: false, //是否显示详细视图
+            detailView: false, //是否显示父子表
+            columns: [
+                {
+                    field: 'Number',
+                    title: '序号',
+                    align: 'center',
+                    valign: 'middle',
+                    formatter: function (value, row, index) {
+                        return index + 1;
+                    },
+                    width: '4%'
+                },
+                {
+                    title: '复估单号',
+                    field: 'RevaluationNo',
+                    align: 'left',
+                    valign: 'middle',
+                    width: '10%'
+                },
+                {
+                    title: '复估名称',
+                    field: 'RevaluationName',
+                    align: 'left',
+                    valign: 'middle',
+                    width: '21%'
+                },
+                {
+                    title: '业务类型',
+                    field: 'EvalType',
+                    align: 'left',
+                    valign: 'middle',
+                    width: '8%'
+                },
+                {
+                    title: '当前进度',
+                    field: 'RevaluationStatus',
+                    align: 'left',
+                    valign: 'middle',
+                    width: '8%'
+                },
+                {
+                    title: '委托时间',
+                    field: 'CreateTime',
+                    align: 'left',
+                    valign: 'middle',
+                    width: '15%'
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    valign: 'middle',
+                    width: '36%',
+                    formatter: function (value, row, index) {
+                        var a = '';
+                        if (row.RevaluationStatus == '@RevaluationStatusEnum.未受理.ToString()') {
+                            a = '<a href="javascript:void(0);"  onclick=acceptRevaluation("' + row.TId + '","' + row.RevaluationNo + '")>复估受理</a>&nbsp;';
+                        } else if (row.RevaluationStatus == '@RevaluationStatusEnum.复估受理.ToString()') {
+                            a += '<a href="javascript:void(0);"  onclick=revaluating("' + row.TId + '","' + row.RevaluationNo + '")>开始复估</a>&nbsp;';
+                            if (row.canFinish) {
+                                a += '| <a href="javascript:void(0);"  onclick=finishRevaluation("' + row.TId + '","' + row.RevaluationNo + '")>复估完成</a>&nbsp;';
+                            }
+                        } else {
+                            a += '<a href="javascript:void(0);"  onclick=viewRevaluation("' + row.TId + '","' + row.RevaluationNo + '")>查看详情</a>&nbsp;';
+                        }
+                        var b = '';
+                        if (row.RevaluationStatus == '@RevaluationStatusEnum.复估完成.ToString()') {
+                            b += '| <a href="javascript:void(0);"  onclick=downloadRevaluation("' + row.TId + '","' + row.RevaluationNo + '")>导出复估单</a>&nbsp;';
+                        }
+                        return a + b;
+                    }
+                }
+            ],
+            onLoadSuccess: function () {
+                $('#searchRevaluation').attr("disabled", false);
+            },
+            onLoadError: function () {
+                $('#searchRevaluation').attr("disabled", false);
+            }
+        });
+    }
+
+    //搜索复估异议列表
+    function searchConsult(indexParam, rowsParam) {
+        $('#consultTable').bootstrapTable("destroy");
+        if (indexParam == null && rowsParam == null) {
+            indexParam = consultIndex;
+            rowsParam = consultRows;
+        }
+        consultTableInit(indexParam, rowsParam);
+    }
+
+    //复估异议列表加载数据
+    function consultTableInit(indexParam, rowsParam) {
+        $("#consultTable").bootstrapTable({
+            url: '/Revaluation/GetConsultList', //请求后台的URL（*）
+            method: 'post', //请求方式（*）
+            toolbar: '#toolbar', //工具按钮用哪个容器
+            striped: true, //是否显示行间隔色
+            cache: false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+            pagination: true, //是否显示分页（*）
+            sortable: false, //是否启用排序
+            sortOrder: "asc", //排序方式
+            queryParams: function (params) {
+                consultIndex = params.offset / params.limit + 1;
+                consultRows = params.limit;
+                return {
+                    ProjectNo: $("#ProjectNo").val(),
+                    PledgeAddress: $("#input_PledgeAddress").val(),
+                    EvalType: $("#EvalType1").val(),
+                    PropertyType: $("#input_PropertyType").val(),
+                    RevaluationTimeFrom: $("#RevaluationTimeFrom").val(),
+                    RevaluationTimeTo: $("#RevaluationTimeTo").val(),
+                    index: params.offset / params.limit + 1, //页码
+                    rows: params.limit, //页面大小
+                };
+            }, //传递参数（*）
+            sidePagination: "server", //分页方式：client客户端分页，server服务端分页（*）
+            pageNumber: indexParam == 0 ? 1 : indexParam, //初始化加载第一页，默认第一页
+            pageSize: rowsParam == 0 ? 10 : rowsParam, //每页的记录行数（*）
+            pageList: [10, 25, 50, 100], //可供选择的每页的行数（*）
+            strictSearch: true,
+            clickToSelect: true, //是否启用点击选中行
+            height: 'auto', //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+            uniqueId: "TId", //每一行的唯一标识，一般为主键列
+            cardView: false, //是否显示详细视图
+            detailView: false, //是否显示父子表
+            columns: [
+                {
+                    field: 'Number',
+                    title: '序号',
+                    formatter: function (value, row, index) {
+                        return index + 1;
+                    },
+                    width: '4%'
+                },
+                {
+                    title: '流水号',
+                    field: 'ProjectNo',
+                    align: 'left',
+                    valign: 'middle',
+                    width: '10%'
+                },
+                {
+                    title: '押品地址',
+                    field: 'PledgeAddress',
+                    align: 'left',
+                    valign: 'middle',
+                    width: '21%'
+                },
+                {
+                    title: '业务类型',
+                    field: 'EvalType',
+                    align: 'left',
+                    valign: 'middle',
+                    width: '8%'
+                },
+                {
+                    title: '押品类型',
+                    field: 'PropertyType',
+                    align: 'left',
+                    valign: 'middle',
+                    width: '8%'
+                },
+                {
+                    title: '初估价值(元)',
+                    field: 'InitialEstimateValue',
+                    align: 'left',
+                    valign: 'middle',
+                    width: '8%'
+                },
+                {
+                    title: '复估价值(元)',
+                    field: 'RevaluationValue',
+                    align: 'left',
+                    valign: 'middle',
+                    width: '8%'
+                },
+                {
+                    title: '重估时间',
+                    field: 'RevaluationTime',
+                    align: 'left',
+                    valign: 'middle',
+                    width: '13%'
+                },
+                //{
+                //    title: '是否认可',
+                //    field: 'IsApprove',
+                //    align: 'left',
+                //    valign: 'middle',
+                //    width: '5%'
+                //},
+                {
+                    title: '操作',
+                    align: 'center',
+                    valign: 'middle',
+                    width: '20%',
+                    formatter: function (value, row, index) {
+                        var a = '';
+                        if (row.IsCancelConsult == '是') {
+                            a = '已撤销异议，无需回复';
+                        } else if (row.IsCancelConsult == '否' && row.IsApprove != '是' && row.IsApprove != '否') {
+                            a = '<a href="javascript:void(0);"  onclick=approveRevaluationItem("' + row.TId + '","' + row.ProjectNo + '")>回复异议</a>&nbsp;| ';
+                        }
+                        var b = '<a href="javascript:void(0);"  onclick=viewDetail("' + row.TId + '","' + row.ProjectNo + '")>查看详情</a>&nbsp;';
+                        return a + b;
+                    }
+                }
+            ],
+            onLoadSuccess: function () {
+                $('#searchConsult').attr("disabled", false);
+            },
+            onLoadError: function () {
+                $('#searchConsult').attr("disabled", false);
+            }
+        });
+    }
+
+    //复估单受理
+    function acceptRevaluation(id, revaluation) {
+        confirm = layer.confirm('确定受理复估:' + revaluation + '？', {
+            btn: ['确定', '取消']
+        }, function () {
+            $.ajax({
+                url: '@Url.Action("AcceptRevaluation", "Revaluation")',
+                dataType: "json",
+                type: "post",
+                data: {
+                    'id': id
+                },
+                beforesend: showLoadingTips(),
+                complete: function () { hideLoadingTips(); },
+                success: function (result) {
+                    if (result.success) {
+                        layer.alert('操作成功', { icon: 1 });
+                        search();
+                    } else {
+                        layer.alert(result.message, { icon: 2 });
+                    }
+                },
+                error: function () {
+                    layer.alert('操作失败！', { icon: 2 });
+                }
+            });
+        }, function () {
+            layer.close(confirm);
+        });
+    }
+
+    //开始复估
+    function revaluating(id, revaluationNo) {
+        parent.changeIframe('Revaluating_Revaluation', '开始复估' + revaluationNo, '@Url.Content("~/Revaluation/Revaluating?revaluationId=")' + id);
+    }
+
+    //完成复估
+    function finishRevaluation(id, revaluationNo) {
+        confirm = layer.confirm('确定完成复估单:' + revaluationNo + '？', {
+            btn: ['确定', '取消']
+        }, function () {
+            $.ajax({
+                url: '@Url.Action("FinishRevaluation", "Revaluation")',
+                dataType: "json",
+                type: "post",
+                data: {
+                    'id': id
+                },
+                beforesend: showLoadingTips(),
+                complete: function () { hideLoadingTips(); },
+                success: function (result) {
+                    if (result.success) {
+                        layer.alert('操作成功', { icon: 1 });
+                        search();
+                    } else {
+                        layer.alert(result.message, { icon: 2 });
+                    }
+                },
+                error: function () {
+                    layer.alert('操作失败！', { icon: 2 });
+                }
+            });
+        }, function () {
+            layer.close(confirm);
+        });
+    }
+
+    //查看详情
+    function viewRevaluation(id, revaluationNo) {
+        parent.changeIframe('Revaluating_Revaluation', '查看详情' + revaluationNo, '@Url.Content("~/Revaluation/Revaluating?revaluationId=")' + id);
+    }
+
+    //导出
+    function downloadRevaluation(id, revaluationNo) {
+        showLoadingTips();
+        window.location.href = "@Url.Content("~/Revaluation/ExportRevaluation?id=")" + id + "&revaluationNo=" + revaluationNo;
+        hideLoadingTips();
+    }
+
+    //复估异议
+    function approveRevaluationItem(id, projectNo) {
+        $("#tipsSpan").html("回复" + projectNo + "复估异议");
+        $("#hiddenRevaluationItemId").val(id);
+        dialog = layer.open({
+            type: 1,
+            shade: [0.3, "#070707"],
+            closeBtn: 0,
+            area: ['420px', '240px'],
+            title: false, //不显示标题
+            content: $('#approveForm'), //捕获的元素
+            success: function () {
+                $("#approveForm").validate({
+                    onkeyup: function (element) {
+                        $(element).valid();
+                    },
+                    rules: {
+                        ////是否认可
+                        //input_IsApprove: {
+                        //    required: true
+                        //},
+                        //理由
+                        input_ConsultReply: {
+                            required: true,
+                            byteRangeLength: 300
+                        }
+                    },
+                    messages: {
+                        //input_IsApprove: {
+                        //    required: "请选择是否认可"
+                        //},
+                        input_ConsultReply: {
+                            required: "请输入理由",
+                            byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                        }
+                    },
+                    success: function (label) {
+                        layer.close(dialog1);
+                        $("#" + label[0].htmlFor).removeClass("error-border");
+                    },
+                    errorPlacement: function (error, element) {
+                        $("#" + element[0].id).addClass("error-border");
+                        dialog1 = layer.tips(error[0].innerHTML, "#" + element[0].id, {
+                            tips: [2, '#F99228']
+                        });
+                    }
+                });
+            }
+        });
+    }
+
+    //查看详情
+    function viewDetail(id, projectNo) {
+        $("#tipsSpan1").html("查看" + projectNo + "复估项目详情");
+        $.ajax({
+            url: '@Url.Action("GetRevaluationItemById", "Revaluation")',
+            dataType: "json",
+            type: "post",
+            data: {
+                'id': id
+            },
+            beforesend: showLoadingTips(),
+            complete: function () { hideLoadingTips(); },
+            success: function (result) {
+                if (result != null) {
+                    var height = 420;
+                    $("#ProtocolNumber").val(result.ProtocolNumber);
+                    $("#CustomerNumber").val(result.CustomerNumber);
+                    $("#PledgeAddress").val(result.PledgeAddress);
+                    $("#PropertyType").val(result.PropertyType);
+                    $("#BorrowerName").val(result.BorrowerName);
+                    $("#InitialEstimateTime").val(result.InitialEstimateTime);
+                    $("#InitialEstimateValue").val(result.InitialEstimateValue);
+                    $("#RevaluationTime").val(result.RevaluationTime);
+                    $("#RevaluationValue").val(result.RevaluationValue);
+                    $("#OperationOrganization").val(result.OperationOrganization);
+                    $("#CustomerAccountManager").val(result.CustomerAccountManager);
+                    $("#ContactNumber").val(result.ContactNumber);
+                    $("#ChangeDescription").text(result.ChangeDescription);
+                    $("#Remark").text(result.Remark);
+                    //$("#IsApprove").val(result.IsApprove);
+                    $("#ConsultReply").text(result.ConsultReply);
+                    if (result.IsApprove != "" && result.IsCancelConsult != "是") {
+                        height = 510;
+                        //$("#hiddenTR1").show();
+                        $("#hiddenTR2").show();
+                    } else {
+                        //$("#hiddenTR1").hide();
+                        $("#hiddenTR2").hide();
+                    }
+                    dialog = layer.open({
+                        type: 1,
+                        shade: [0.3, "#070707"],
+                        closeBtn: 0,
+                        area: ['620px', height + 'px'],
+                        title: false, //不显示标题
+                        content: $('#detailForm'), //捕获的元素
+                    });
+                }
+            },
+            error: function () {
+                layer.alert('操作失败！', { icon: 2 });
+            }
+        });
+    }
+
+    //关闭复估异议
+    function cancel() {
+        $("#tipsSpan").val("回复复估异议");
+        $("#hiddenRevaluationItemId").val("");
+        //$("#input_IsApprove").prop('selectedIndex', 0);
+        $("#input_ConsultReply").val("");
+        layer.close(dialog);
+    }
+
+    //关闭详情
+    function cancel1() {
+        $("#tipsSpan1").val("查看复估项目详情");
+        $("#ProtocolNumber").val("");
+        $("#CustomerNumber").val("");
+        $("#PledgeAddress").val("");
+        $("#PropertyType").val("");
+        $("#BorrowerName").val("");
+        $("#InitialEstimateTime").val("");
+        $("#InitialEstimateValue").val("");
+        $("#RevaluationTime").val("");
+        $("#RevaluationValue").val("");
+        $("#OperationOrganization").val("");
+        $("#CustomerAccountManager").val("");
+        $("#ContactNumber").val("");
+        $("#ChangeDescription").text("");
+        $("#Remark").text("");
+        //$("#IsApprove").val("");
+        $("#ConsultReply").text("");
+        $("#hiddenTR1").hide();
+        $("#hiddenTR2").hide();
+        layer.close(dialog);
+    }
+</script>

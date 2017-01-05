@@ -1,0 +1,164 @@
+﻿@using System.Configuration;
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>中信评估系统-用户登录</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link href="~/Content/css/font-awesome.min.css?v=@HttpContext.Current.Application["JSVersion"]" type="text/css" rel="stylesheet" />
+    <link href="~/Content/css/login.css?v=@HttpContext.Current.Application["JSVersion"]" type="text/css" rel="stylesheet" />
+</head>
+<body class="registered-bg login">
+    <div class="login-main">
+        <div class="login-main-bg">
+            <div class="loginwrap">
+                <div class="logincontent">
+                    <p class="title"><img src="../../Content/images/loginimgs/pep.png" /></p>
+                    <form id="formData">
+                        <ul>
+                            <li>
+                                <p class="cnt">用户名</p>
+                                <p class="login-input">
+                                    <i class="fa fa-user"></i>
+                                    <input type="text" class="text" value="@ViewBag.UserName" id="UserName" name="UserName" placeholder="请输入用户名" />
+                                </p>
+                            </li>
+                            <li>
+                                <p class="cnt">密码</p>
+                                <p class="login-input">
+                                    <i class="fa fa-compass"></i>
+                                    <input type="password" class="text" value="@ViewBag.Password" id="Password" name="Password" placeholder="请输入密码" />
+                                </p>
+                            </li>
+                            <li>
+                                <p class="cnt">图片验证码</p>
+                                <p class="login-input">
+                                    <input type="text" class="text" id="ValidateCode" name="ValidateCode" style="width: 65px" maxlength="4" placeholder="请输验证码" onkeydown="return disableEnter(event)" />
+                                    <img src="/User/ValidateCode?regType=1" id="imgCode" alt="单击可刷新" width="92" height="34" onclick="ChangeCode()" />
+                                    <a href="javascript:void(0)" onclick="ChangeCode(); return false;" style="font-size:12px;text-decoration: underline">看不清，换一张</a>
+                                </p>
+                            </li>
+                            <li>
+                                <p class="cnt"><input type="checkbox" id="rember" name="rember" class="checkedbox" @if(ViewBag.RememberPassword){<text>checked="checked"</text>} /><label for="rember">记住用户名密码</label></p>
+                            </li>
+                            <li>
+                                <button type="button" class="btn-login" id="login">登录</button>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="~/Content/plug-in/jquery/jquery-1.10.2.min.js?v=@HttpContext.Current.Application["JSVersion"]"></script>
+    <script type="text/javascript" src="~/Content/plug-in/jquery-validation/jquery.validate.min.js?v=@HttpContext.Current.Application["JSVersion"]"></script>
+    <script type="text/javascript" src="~/Content/plug-in/jquery-validation/messages_cn.js?v=@HttpContext.Current.Application["JSVersion"]"></script>
+    <script type="text/javascript" src="~/Content/plug-in/layer/layer.js?v=@HttpContext.Current.Application["JSVersion"]"></script>
+    <script type="text/javascript">
+        var _showloadingTip;
+        
+        $(function () {
+            $("#formData").validate({
+                rules: {
+                    UserName: {
+                        required: true,
+                    },
+                    Password: {
+                        required: true,
+                    },
+                    ValidateCode: {
+                        required: true,
+                        validateCode: true,
+                    }
+                },
+                messages: {
+                    UserName: {
+                        required: "请输入用户名",
+                    },
+                    Password: {
+                        required: "请输入密码",
+                    },
+                    ValidateCode: {
+                        required: "请输验证码",
+                        validateCode:"请输入正确的验证码"
+                    }
+                },
+                success: function (label) {
+                    $("#" + $(label).attr("for")).removeClass("error").siblings("i").css({ "top": "7px" });
+                    label.remove();
+                },
+                errorPlacement: function (error, element) {
+                    element.siblings("i").css({ "top": "14px" });
+                    element.parent().closest('.login-input').next(".error").remove();
+                    if (error[0].innerHTML != "") {
+                        var html = '<label class="error">' + error[0].innerHTML + '</label>';
+                        element.parent().closest('.login-input').after(html);
+                    }
+                }
+            });
+
+            $("#login").click(function () {
+                login();
+            });
+
+        });
+
+        function showLoadingTips() {
+            _showloadingTip = layer.load(2, {
+                shade: [0.1, '#000']
+            });
+        }
+        function hideLoadingTips() {
+            layer.close(_showloadingTip);
+        }
+
+        //登录
+        function login() {
+            var flag = $("#formData").valid();
+            if (!flag) return;
+            $.ajax({
+                url: '@Url.Action("UserLogin", "User")',
+                dataType: "json",
+                type: "post",
+                data: {
+                    'userAccount': $("#UserName").val(),
+                    'password': $("#Password").val(),
+                    'validateCode':$("#ValidateCode").val(),
+                    'remember': $("#rember").prop("checked")
+                },
+                beforesend: showLoadingTips(),
+                complete: function () { hideLoadingTips(); },
+                success: function (result) {
+                    if (result.success) {
+                        self.location.replace('@Url.Action("Index", "Home")');
+                    }
+                    else {
+                        layer.alert(result.message, { title: false, closeBtn: false, icon: 5, time: 2000 });
+                    }
+                },
+                error: function () {
+                    layer.alert('登录失败！', { icon: 2 });
+                }
+            });            
+        }
+        //验证码
+        function ChangeCode() {
+            var url, randomNum;
+            randomNum = Math.floor(Math.random() * 1000000);
+            url = $("#imgCode").attr("src");
+            $("#imgCode").attr("src", url + "&r=" + randomNum);
+        }
+        function disableEnter(event) {
+            var keyCode = event.keyCode ? event.keyCode : event.which ? event.which : event.charCode;
+            if (keyCode == 13) {
+                login();
+            }
+        }
+    </script>
+</body>
+</html>

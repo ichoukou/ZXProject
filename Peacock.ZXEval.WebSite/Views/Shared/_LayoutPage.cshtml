@@ -1,0 +1,67 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>中信评估管理系统</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9" />
+    <!--jquery-->
+    <script type="text/javascript" src="~/Content/plug-in/jquery/jquery-1.10.2.min.js?v=@HttpContext.Current.Application["JSVersion"]"></script> 
+    <!--jquery.cookie-->
+    <script type="text/javascript" src="~/Content/plug-in/jquery/jquery.cookie.js?v=@HttpContext.Current.Application["JSVersion"]"></script> 
+    <!--jquery.validate-->
+    <script type="text/javascript" src="~/Content/plug-in/jquery-validation/jquery.validate.min.js?v=@HttpContext.Current.Application["JSVersion"]"></script>
+    <!--jquery.validate.messages-->
+    <script type="text/javascript" src="~/Content/plug-in/jquery-validation/messages_cn.js?v=@HttpContext.Current.Application["JSVersion"]"></script>
+    <!--jquery.form-->
+    <script type="text/javascript" src="~/Content/plug-in/jquery/jquery.form.js?v=@HttpContext.Current.Application["JSVersion"]"></script>
+    <!--layer-->
+    <script type="text/javascript" src="~/Content/plug-in/layer/layer.js?v=@HttpContext.Current.Application["JSVersion"]"></script>
+    <script type="text/javascript" src="~/Content/plug-in/laydate/laydate.js?v=@HttpContext.Current.Application["JSVersion"]"></script>
+    <script type="text/javascript" src="~/Content/plug-in/layer/extend/layer.ext.js?v=@HttpContext.Current.Application["JSVersion"]"></script>
+    <!--bootstrap-->
+    <script type="text/javascript" src="~/Content/plug-in/bootstrap/bootstrap.min.js?v=@HttpContext.Current.Application["JSVersion"]"></script>
+    <link type="text/css" rel="stylesheet" href="~/Content/plug-in/bootstrap/bootstrap.min.css?v=@HttpContext.Current.Application["JSVersion"]" />
+    <link type="text/css" rel="stylesheet" href="~/Content/css/font-awesome.min.css?v=@HttpContext.Current.Application["JSVersion"]" />
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="~/Content/css/font-awesome-ie7.min.css?v=@HttpContext.Current.Application["JSVersion"]">
+    <![endif]-->   
+    <!--bootstrap-table-->
+    <script type="text/javascript" src="~/Content/plug-in/bootstrap-table/bootstrap-table.min.js?v=@HttpContext.Current.Application["JSVersion"]"></script>
+    <script type="text/javascript" src="~/Content/plug-in/bootstrap-table/bootstrap-table-zh-CN.min.js?v=@HttpContext.Current.Application["JSVersion"]"></script>
+    <link type="text/css" rel="stylesheet" href="~/Content/plug-in/bootstrap-table/bootstrap-table.css?v=@HttpContext.Current.Application["JSVersion"]" /> 
+    <!--[if lt IE 9]>
+    <script type="text/javascript"  src="~/Content/plug-in/bootstrap.extends/html5shiv.min.js?v=@HttpContext.Current.Application["JSVersion"]"></script>
+    <script type="text/javascript"  src="~/Content/plug-in/bootstrap.extends/respond.min.js?v=@HttpContext.Current.Application["JSVersion"]"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="~/Content/css/style.css?v=@HttpContext.Current.Application["JSVersion"]" />
+</head>
+<body class="bc-white" style=" overflow-y: auto; ">
+    @RenderBody()
+   
+    
+    <Script>
+        var _showloadingTip;
+        function showLoadingTips() {
+            _showloadingTip = layer.load(2, {
+                shade: [0.1, '#000']
+            });
+        }
+        function hideLoadingTips() {
+            layer.close(_showloadingTip);
+        }
+        function MathRand() {
+            var Num = "";
+            for (var i = 0; i < 6; i++) {
+                Num += Math.floor(Math.random() * 10);
+            }
+            return Num;
+        }
+    </Script>
+</body>
+</html>
+

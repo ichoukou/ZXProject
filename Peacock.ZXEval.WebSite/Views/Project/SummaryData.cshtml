@@ -1,0 +1,1931 @@
+﻿@model Peacock.ZXEval.Model.DTO.SummaryDataModel
+@{
+    ViewBag.Title = "SummaryData";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+} 
+<div class="report-tab">
+    <form id="forminfo">
+        <input type="hidden" id="projectId" name="projectId" value="@Request.QueryString["projectId"]" />
+        @if (ViewBag.OperateType == "报告预估")
+        {
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">预估信息</h3>
+                </div>
+                <div class="panel-body">
+                    <table style="width: 100%">
+                        <tr>
+                            <td width="10%" class="blue">预估总价(元)(*)</td>
+                            <td width="40%" colspan="3"><input id="EstimateTotalPrice" name="EstimateTotalPrice" type="text" class="detail-input" value="@Model.EstimateTotalPrice" /></td>
+                            <td width="10%" class="blue">预估单价(元)(*)</td>
+                            <td width="40%" colspan="3"><input id="EstimateUnitPrice" name="EstimateUnitPrice" type="text" class="detail-input" value="@Model.EstimateTotalPrice" /></td>
+                        </tr>
+                        <tr></tr>
+                    </table>
+                </div>
+            </div>
+        }
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">评估信息</h3>
+            </div>
+            <div class="panel-body">
+                <table style="width:100%">
+                    <tr>
+                        <td width="10%" class="blue">评估公司名称</td>
+                        @*<td width="15%"><input id="CompanyName" name="CompanyName" type="text" class="detail-input" style="background-color: #eee" value="@Model.CompanyName" /></td>*@
+                        <td width="15%"><input id="CompanyName" name="CompanyName" type="text" class="detail-input" value="@Model.CompanyName" /></td>
+                        <td width="10%" class="blue">押品类型</td>
+                        <td width="15%"><input id="ChargeType" name="ChargeType" type="text" class="detail-input" value="@Model.ChargeType" /></td>
+                        <td width="10%" class="blue">押品名称</td>
+                        <td width="40%" colspan="3"><input id="ChargeName" name="ChargeName" type="text" class="detail-input" value="@Model.ChargeName" /></td>
+                    </tr>
+                    <tr>
+                        <td width="10%" class="blue">抵质押人名称</td>
+                        <td width="15%"><input id="PledgeName" name="PledgeName" type="text" class="detail-input" value="@Model.PledgeName" /></td>
+                        <td width="10%" class="blue">评估方法</td>
+                        <td width="15%"><input id="EvaluationMethod" name="EvaluationMethod" type="text" class="detail-input" value="@Model.EvaluationMethod" /></td>
+                        <td width="10%" class="blue">权证类型</td>
+                        <td width="15%"><input id="WarrantsType" name="WarrantsType" type="text" class="detail-input" value="@Model.WarrantsType" /></td>
+                        <td width="10%" class="blue">权证编号</td>
+                        <td width="15%"><input id="WarrantNo" name="WarrantNo" type="text" class="detail-input" value="@Model.WarrantNo" /></td>
+                    </tr>
+                    <tr>
+                        <td width="10%" class="blue">估值价值(元)(*)</td>
+                        <td width="40%" colspan="3"><input id="ValuationValue" name="ValuationValue" type="text" class="detail-input" value="@Model.ValuationValue" /></td>
+                        <td width="10%" class="blue">评估收费(元)(*)</td>
+                        <td width="40%" colspan="3"><input id="AssessmentFees" name="AssessmentFees" type="text" class="detail-input" value="@Model.AssessmentFees" /></td>
+                    </tr>
+                    <tr></tr>
+                </table>
+            </div>
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title"><a class="pull-right fa fa-arrow-circle-up" data-toggle="collapse" href="#panel-body" aria-expanded="false" aria-controls="panel-body" id="arrow-circle"></a>项目信息</h3>
+            </div>
+            <div class="panel-body in" id="panel-body">
+                <table style="width:100%">
+                    @if (ViewBag.HaveRegion)
+                    {
+                        <tr>
+                            <td width="20%" class="blue">国家(*)</td>
+                            <td width="30%">
+                                <select id="Country" name="Country" class="detail-input" required>
+                                    <option>中国</option>
+                                    <option>阿富汗</option>
+                                    <option>奥兰群岛</option>
+                                    <option>阿尔巴尼亚</option>
+                                    <option>阿尔及利亚</option>
+                                    <option>美属萨摩亚</option>
+                                    <option>安道尔</option>
+                                    <option>安哥拉</option>
+                                    <option>安圭拉</option>
+                                    <option>安提瓜和巴布达</option>
+                                    <option>阿根廷</option>
+                                    <option>亚美尼亚</option>
+                                    <option>阿鲁巴</option>
+                                    <option>澳大利亚</option>
+                                    <option>奥地利</option>
+                                    <option>阿塞拜疆</option>
+                                    <option>巴哈马</option>
+                                    <option>巴林</option>
+                                    <option>孟加拉国</option>
+                                    <option>巴巴多斯</option>
+                                    <option>白俄罗斯</option>
+                                    <option>比利时</option>
+                                    <option>伯利兹</option>
+                                    <option>贝宁</option>
+                                    <option>百慕大</option>
+                                    <option>不丹</option>
+                                    <option>玻利维亚</option>
+                                    <option>波黑</option>
+                                    <option>博茨瓦纳</option>
+                                    <option>布维岛</option>
+                                    <option>巴西</option>
+                                    <option>英属印度洋领地</option>
+                                    <option>文莱</option>
+                                    <option>保加利亚</option>
+                                    <option>布基纳法索</option>
+                                    <option>布隆迪</option>
+                                    <option>柬埔寨</option>
+                                    <option>喀麦隆</option>
+                                    <option>加拿大</option>
+                                    <option>佛得角</option>
+                                    <option>开曼群岛</option>
+                                    <option>中非</option>
+                                    <option>乍得</option>
+                                    <option>智利</option>
+                                    <option>圣诞岛</option>
+                                    <option>科科斯（基林）群岛</option>
+                                    <option>哥伦比亚</option>
+                                    <option>科摩罗</option>
+                                    <option>刚果（布）</option>
+                                    <option>刚果（金）</option>
+                                    <option>库克群岛</option>
+                                    <option>哥斯达黎加</option>
+                                    <option>科特迪瓦</option>
+                                    <option>克罗地亚</option>
+                                    <option>古巴</option>
+                                    <option>塞浦路斯</option>
+                                    <option>捷克</option>
+                                    <option>丹麦</option>
+                                    <option>吉布提</option>
+                                    <option>多米尼克</option>
+                                    <option>多米尼加</option>
+                                    <option>厄瓜多尔</option>
+                                    <option>埃及</option>
+                                    <option>萨尔瓦多</option>
+                                    <option>赤道几内亚</option>
+                                    <option>厄立特里亚</option>
+                                    <option>爱沙尼亚</option>
+                                    <option>埃塞俄比亚</option>
+                                    <option>福克兰群岛（马尔维纳斯）</option>
+                                    <option>法罗群岛</option>
+                                    <option>斐济</option>
+                                    <option>芬兰</option>
+                                    <option>法国</option>
+                                    <option>法属圭亚那</option>
+                                    <option>法属波利尼西亚</option>
+                                    <option>法属南部领地</option>
+                                    <option>加蓬</option>
+                                    <option>冈比亚</option>
+                                    <option>格鲁吉亚</option>
+                                    <option>德国</option>
+                                    <option>加纳</option>
+                                    <option>直布罗陀</option>
+                                    <option>希腊</option>
+                                    <option>格陵兰</option>
+                                    <option>格林纳达</option>
+                                    <option>瓜德罗普</option>
+                                    <option>关岛</option>
+                                    <option>危地马拉</option>
+                                    <option>格恩西岛</option>
+                                    <option>几内亚</option>
+                                    <option>几内亚比绍</option>
+                                    <option>圭亚那</option>
+                                    <option>海地</option>
+                                    <option>赫德岛和麦克唐纳岛</option>
+                                    <option>梵蒂冈</option>
+                                    <option>洪都拉斯</option>
+                                    <option>香港</option>
+                                    <option>匈牙利</option>
+                                    <option>冰岛</option>
+                                    <option>印度</option>
+                                    <option>印度尼西亚</option>
+                                    <option>伊朗</option>
+                                    <option>伊拉克</option>
+                                    <option>爱尔兰</option>
+                                    <option>英国属地曼岛</option>
+                                    <option>以色列</option>
+                                    <option>意大利</option>
+                                    <option>牙买加</option>
+                                    <option>日本</option>
+                                    <option>泽西岛</option>
+                                    <option>约旦</option>
+                                    <option>哈萨克斯坦</option>
+                                    <option>肯尼亚</option>
+                                    <option>基里巴斯</option>
+                                    <option>朝鲜</option>
+                                    <option>韩国</option>
+                                    <option>科威特</option>
+                                    <option>吉尔吉斯斯坦</option>
+                                    <option>老挝</option>
+                                    <option>拉脱维亚</option>
+                                    <option>黎巴嫩</option>
+                                    <option>莱索托</option>
+                                    <option>利比里亚</option>
+                                    <option>利比亚</option>
+                                    <option>列支敦士登</option>
+                                    <option>立陶宛</option>
+                                    <option>卢森堡</option>
+                                    <option>澳门</option>
+                                    <option>前南马其顿</option>
+                                    <option>马达加斯加</option>
+                                    <option>马拉维</option>
+                                    <option>马来西亚</option>
+                                    <option>马尔代夫</option>
+                                    <option>马里</option>
+                                    <option>马耳他</option>
+                                    <option>马绍尔群岛</option>
+                                    <option>马提尼克</option>
+                                    <option>毛利塔尼亚</option>
+                                    <option>毛里求斯</option>
+                                    <option>马约特</option>
+                                    <option>墨西哥</option>
+                                    <option>密克罗尼西亚联邦</option>
+                                    <option>摩尔多瓦</option>
+                                    <option>摩纳哥</option>
+                                    <option>蒙古</option>
+                                    <option>黑山</option>
+                                    <option>蒙特塞拉特</option>
+                                    <option>摩洛哥</option>
+                                    <option>莫桑比克</option>
+                                    <option>缅甸</option>
+                                    <option>纳米比亚</option>
+                                    <option>瑙鲁</option>
+                                    <option>尼泊尔</option>
+                                    <option>荷兰</option>
+                                    <option>荷属安的列斯</option>
+                                    <option>新喀里多尼亚</option>
+                                    <option>新西兰</option>
+                                    <option>尼加拉瓜</option>
+                                    <option>尼日尔</option>
+                                    <option>尼日利亚</option>
+                                    <option>纽埃</option>
+                                    <option>诺福克岛</option>
+                                    <option>北马里亚纳</option>
+                                    <option>挪威</option>
+                                    <option>阿曼</option>
+                                    <option>巴基斯坦</option>
+                                    <option>帕劳</option>
+                                    <option>巴勒斯坦</option>
+                                    <option>巴拿马</option>
+                                    <option>巴布亚新几内亚</option>
+                                    <option>巴拉圭</option>
+                                    <option>秘鲁</option>
+                                    <option>菲律宾</option>
+                                    <option>皮特凯恩</option>
+                                    <option>波兰</option>
+                                    <option>葡萄牙</option>
+                                    <option>波多黎各</option>
+                                    <option>卡塔尔</option>
+                                    <option>留尼汪</option>
+                                    <option>罗马尼亚</option>
+                                    <option>俄罗斯联邦</option>
+                                    <option>卢旺达</option>
+                                    <option>圣赫勒拿</option>
+                                    <option>圣基茨和尼维斯</option>
+                                    <option>圣卢西亚</option>
+                                    <option>圣皮埃尔和密克隆</option>
+                                    <option>圣文森特和格林纳丁斯</option>
+                                    <option>萨摩亚</option>
+                                    <option>圣马力诺</option>
+                                    <option>圣多美和普林西比</option>
+                                    <option>沙特阿拉伯</option>
+                                    <option>塞内加尔</option>
+                                    <option>塞尔维亚</option>
+                                    <option>塞舌尔</option>
+                                    <option>塞拉利昂</option>
+                                    <option>新加坡</option>
+                                    <option>斯洛伐克</option>
+                                    <option>斯洛文尼亚</option>
+                                    <option>所罗门群岛</option>
+                                    <option>索马里</option>
+                                    <option>南非</option>
+                                    <option>南乔治亚岛和南桑德韦奇岛</option>
+                                    <option>西班牙</option>
+                                    <option>斯里兰卡</option>
+                                    <option>苏丹</option>
+                                    <option>苏里南</option>
+                                    <option>斯瓦尔巴岛和扬马延岛</option>
+                                    <option>斯威士兰</option>
+                                    <option>瑞典</option>
+                                    <option>瑞士</option>
+                                    <option>叙利亚</option>
+                                    <option>台湾</option>
+                                    <option>塔吉克斯坦</option>
+                                    <option>坦桑尼亚</option>
+                                    <option>泰国</option>
+                                    <option>东帝汶</option>
+                                    <option>多哥</option>
+                                    <option>托克劳</option>
+                                    <option>汤加</option>
+                                    <option>特立尼达和多巴哥</option>
+                                    <option>突尼斯</option>
+                                    <option>土耳其</option>
+                                    <option>土库曼斯坦</option>
+                                    <option>特克斯和凯科斯群岛</option>
+                                    <option>图瓦卢</option>
+                                    <option>乌干达</option>
+                                    <option>乌克兰</option>
+                                    <option>阿联酋</option>
+                                    <option>英国</option>
+                                    <option>美国</option>
+                                    <option>美国本土外小岛屿</option>
+                                    <option>乌拉圭</option>
+                                    <option>乌兹别克斯坦</option>
+                                    <option>瓦努阿图</option>
+                                    <option>委内瑞拉</option>
+                                    <option>越南</option>
+                                    <option>英属维尔京群岛</option>
+                                    <option>美属维尔京群岛</option>
+                                    <option>瓦利斯和富图纳</option>
+                                    <option>西撒哈拉</option>
+                                    <option>也门</option>
+                                    <option>赞比亚</option>
+                                    <option>津巴布韦</option>
+                                </select>
+                            </td>
+                            <td width="20%" class="blue">省/直辖市/自治区(*)</td>
+                            <td width="30%">
+                                <select id="Province" name="Province" class="detail-input chinaselctor"></select>
+                                <input id="no_Province" name="no_Province" type="text" class="detail-input nochinaselctor" value="" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%" class="blue">城市/自治州(*)</td>
+                            <td width="30%">
+                                <select id="City" name="City" class="detail-input chinaselctor"></select>
+                                <input id="no_City" name="no_City" type="text" class="detail-input nochinaselctor" value="" />
+                            </td>
+                            <td width="20%" class="blue">区（县）(*)</td>
+                            <td width="30%">
+                                <select id="District" name="District" class="detail-input chinaselctor"></select>
+                                <input id="no_District" name="no_District" type="text" class="detail-input nochinaselctor" value="" />
+                            </td>
+                        </tr>
+                    }
+                    <tr>
+                        @{
+                            bool newLine = false;
+                        }
+                        @foreach (KeyValuePair<string, string> field in ViewBag.FieldList)
+                        {
+                            {
+                                System.Reflection.PropertyInfo propertyInfo = Model.GetType().GetProperty(field.Key);
+                                if (propertyInfo != null)
+                                {
+                                    <td width="20%" class="blue">@field.Value</td>
+                                    if (field.Value.Contains("是否"))
+                                    {
+                                        <td width="30%">
+                                            <select id="@field.Key" name="@field.Key" class="detail-input">
+                                                <option value=""></option>
+                                                @if (propertyInfo.GetValue(Model, null) != null && propertyInfo.GetValue(Model, null).ToString() == "是")
+                                                {
+                                                    <option value="是" selected="selected">是</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="是">是</option>
+                                                }
+                                                @if (propertyInfo.GetValue(Model, null) != null && propertyInfo.GetValue(Model, null).ToString() == "否")
+                                                {
+                                                    <option value="否" selected="selected">否</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="否">否</option>
+                                                }
+                                            </select>
+                                        </td>
+                                    }
+                                    else if (field.Value.Contains("有无"))
+                                    {
+                                        <td width="30%">
+                                            <select id="@field.Key" name="@field.Key" class="detail-input">
+                                                <option value=""></option>
+                                                @if (propertyInfo.GetValue(Model, null) != null && propertyInfo.GetValue(Model, null).ToString() == "有")
+                                                {
+                                                    <option value="有" selected="selected">有</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="有">有</option>
+                                                }
+                                                @if (propertyInfo.GetValue(Model, null) != null && propertyInfo.GetValue(Model, null).ToString() == "无")
+                                                {
+                                                    <option value="无" selected="selected">无</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="无">无</option>
+                                                }
+                                            </select>
+                                        </td>
+                                    }
+                                    else if (field.Value.Contains("日期"))
+                                    {
+                                        <td width="30%"><input id="@field.Key" name="@field.Key" type="text" class="detail-input  laydate-icon" value="@propertyInfo.GetValue(Model, null)" /></td>
+                                    }
+                                    else
+                                    {
+                                        <td width="30%"><input id="@field.Key" name="@field.Key" type="text" class="detail-input" value="@propertyInfo.GetValue(Model, null)" /></td>
+                                    }
+                                    if (newLine)
+                                    {
+                                        @Html.Raw("</tr><tr>");
+                                    }
+                                    newLine = !newLine;
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">业务反馈</h3>
+            </div>
+            <div class="panel-body">
+                <table style="width:100%">
+                    <tr>
+                        <td width="10%" class="blue">反馈内容</td>
+                        <td>
+                            <textarea rows="4" id="Note" name="Note" maxlength="250" class="matter-sr"></textarea>
+                        </td>
+                </table>
+            </div>
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">报告上传记录</h3>
+            </div>
+            <div class="panel-body sm">
+                <div style="width:96%;margin:0 auto;">
+                    <table id="table"></table>
+                </div>
+
+            </div>
+        </div>
+        <div class="row" style="margin:10px 0;">
+            <div class="col-md-12">
+                <div class="form-inline">
+                    <div class="control-group" style="text-align:center;">
+                        <label id="tips" style="color: red"></label>
+                    </div>
+                </div>
+                <div class="form-inline">
+                    <div class="control-group" style="text-align:center;">
+                        <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+                        <button type="button" class="btn btn-sm business-btn-1" id="upload" name="upload" style="width:80px">
+                            @if (ViewBag.OperateType == "报告预估")
+                            {
+                                @Html.Raw("上传预估报告");
+                            }
+                            else
+                            {
+                                @Html.Raw("上传正式报告");
+                            }
+                        </button>
+                        <button type="button" class="btn btn-sm btn-add" id="save" name="save">保&nbsp;&nbsp;存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<form id="fileForm" class="layer_feedback" style="display: none;" enctype="multipart/form-data">
+    <h2><span>@if (ViewBag.OperateType == "报告预估")
+{
+    @Html.Raw("上传预估报告");
+}
+else
+{
+    @Html.Raw("上传正式报告");
+}</span><i class="fa fa-close pull-right" onclick="cancel()"></i></h2>
+    <input type="hidden" id="hiddenProjectId" />
+    <table>
+        <tr style="height: 18px;"></tr>
+        <tr>
+            <td class="left font_s_14" style="width:60px;">文件</td>
+            <td style="width: 280px;">
+                <div class="file">
+                    <input name="" type="text" id="viewfile" class="inputstyle" readonly="readonly">
+                    <input type="file" id="ReportFile" style="width: 270px;" name="reportfile" class="registered-tab-input inputfile" onchange="document.getElementById('viewfile').value=this.value;" />
+                    <i class="registered-fs ziliao">选择文件</i>
+                </div>
+            </td>
+        </tr>
+        <tr style="height: 18px;"></tr>
+        <tr><td colspan="3" class="f-tc"><button class="btn-blue" id="submitFile">保存</button></td><td></td></tr>
+    </table>
+</form>
+<script src="~/Content/plug-in/jquery/jquery.choosearea.js"></script>
+<script src="~/Content/plug-in/jquery/jquery.data.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    (function($) {
+        $.prototype.serializeObject = function() {
+            var a, o, h, i, e;
+            a = this.serializeArray();
+            o = {};
+            h = o.hasOwnProperty;
+            for (i = 0; i < a.length; i++) {
+                e = a[i];
+                if (!h.call(o, e.name)) {
+                    o[e.name] = e.value;
+                }
+            }
+            return o;
+        };
+    })(jQuery);
+</script>
+<script type="text/javascript">
+    var index, dialog, chooseAreaApp;
+
+    //后台返回数据绑定
+    var _Country = "", _province = "", _city = "", _county = "";
+
+    function initLaydate(id) {
+        if ($("#" + id).length != 0) {
+            laydate({
+                elem: '#'+id,
+                format: 'YYYY-MM-DD',
+                istoday: true,
+                istime: true
+            });
+        }
+    }
+    $(function() {
+        initLaydate("EstimatedCompletionDate");
+        initLaydate("LandUseStartDate");
+        initLaydate("LandUseEndDate");
+        initLaydate("LandAcquisitionDate");
+        initLaydate("PurchaseDate");
+        initLaydate("IssueDate");
+        initLaydate("ProductionDate");
+        initLaydate("PurchaseDate");
+        @if (!string.IsNullOrEmpty(Model.Country) && !string.IsNullOrEmpty(Model.Province) && !string.IsNullOrEmpty(Model.City) && !string.IsNullOrEmpty(Model.District))
+        {
+            @Html.Raw("_Country='" + Model.Country + "';_province='" + Model.Province + "';_city='" + Model.City + "';_county='" + Model.District + "';")
+            ;
+            @Html.Raw("initType('edit');")
+            ;
+        }
+        else
+        {
+            @Html.Raw("_Country='中国';_province='四川省';_city='成都市';")
+            ;
+            @Html.Raw("initType('edit');")
+            ;
+            @*@Html.Raw("initType();")*@
+        }
+        //初始化 修改
+        //initType('edit');
+        //初始化 新增
+        //initType();
+
+        $("#Country").change(function() {
+            if ($(this).find("option:selected").text() == "中国") {
+                initCountry(true);
+                initData();
+            } else {
+                initCountry();
+                $("select[tag=china]").find("option[text='--请选择--']").attr("selected", true);
+            }
+        });
+
+        //保存事件
+        $("#save").bind("click", function() {
+            if (!$("#forminfo").valid()) {
+                layer.alert("请检查表单数据是否正确，再提交保存。", { icon: 2 });
+                return false;
+            }
+            var params = $('#forminfo').serializeObject();
+            if ($("#Country").find("option:selected").text() == "中国") {
+                params["Province"] = $("#Province").find("option:selected").text();
+                params["City"] = $("#City").find("option:selected").text();
+                params["District"] = $("#District").find("option:selected").text();
+            } else {
+                params["Province"] = $("#no_Province").val();
+                params["City"] = $("#no_City").val();
+                params["District"] = $("#no_District").val();
+            }
+            var url = "@if (ViewBag.OperateType == "报告预估")
+                       {
+                           @Url.Content("~/Project/OperateReportEstimate")
+                           ;
+                       }
+                       else
+                       {
+                           @Url.Content("~/Project/OperateReportSend")
+                           ;
+                       }";
+            $.ajax({
+                //$("#forminfo").ajaxSubmit({
+                type: "POST", //提交类型
+                dataType: "json", //返回结果格式
+                url: url,
+                data: params,
+                success: function(result) {
+                    if (result.success) {
+                        layer.alert('操作成功!', { icon: 1 }, function() {
+                            parent.changeIframe('Evaluation', '评估任务', '@Url.Action("Index", "Project")');
+                            if (parent.iframe_Evaluation != null) {
+                                parent.iframe_Evaluation.window.search();
+                            }
+                            parent.removeItem("SummaryData_Project");
+                        });
+                    } else {
+                        layer.alert(result.message, { icon: 2 });
+                    }
+                }
+            });
+            return false;
+        });
+        //报告上传
+        $("#upload").bind("click", function() {
+            $("#hiddenProjectId").val($("#projectId").val());
+            index = layer.open({
+                type: 1,
+                shade: [0.3, "#070707"],
+                closeBtn: 0,
+                area: ['420px', '230px'],
+                title: false, //不显示标题
+                content: $('#fileForm'), //捕获的元素
+            });
+        });
+        //上传报告
+        $("#submitFile").on("click", function() {
+            $("#submitFile").attr("disabled", "disabled");
+            var path = $("#ReportFile").val();
+            var suffix = path.split('.');
+            if (suffix[suffix.length - 1] != "doc" && suffix[suffix.length - 1] != "docx") {
+                layer.msg("请上传word文件!", { time: 1500, icon: 5, shade: [0.3, '#000'] });
+                $("#submitFile").removeAttr("disabled");
+                return false;
+            }
+            var indexs = layer.msg("正在上传，请销等...", { icon: 7, time: 30000, shade: [0.3, '#000'] });
+            var url = "@if (ViewBag.OperateType == "报告预估")
+                       {
+                           @Url.Content("~/Project/UploadEstimateReport")
+                           ;
+                       }
+                       else
+                       {
+                           @Url.Content("~/Project/UploadReport")
+                           ;
+                       }";
+            var options = {
+                url: url,
+                type: "post",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: { "ProjectId": $("#hiddenProjectId").val() },
+                success: function(result) {
+                    layer.alert(result.msg, {
+                        closeBtn: 0,
+                        icon: 6,
+                        shade: [0.3, '#000']
+                    }, function() {
+                        layer.closeAll();
+                        haveUpload();
+                        $('#table').bootstrapTable("destroy");
+                        tableint();
+                        $("#submitFile").removeAttr("disabled");
+                    });
+
+                },
+                error: function(result) {
+                    $("#submitFile").removeAttr("disabled");
+                    console.log(result);
+                }
+            };
+            $("#fileForm").ajaxSubmit(options);
+            return false; //阻止form提交
+        });
+        $("#forminfo").validate({
+            ignore: ':hidden',
+            onkeyup: function(element) {
+                $(element).valid();
+            },
+            //onkeyup:false,
+            rules: {
+                //评估公司名称
+                CompanyName: {},
+                //押品名称
+                ChargeName: {},
+                //押品类型
+                ChargeType: {},
+                //抵质押人名称
+                PledgeName: {},
+                //评估方法
+                EvaluationMethod: {},
+                //权证类型
+                WarrantsType: {},
+                //权证编号
+                WarrantNo: {},
+                //估值价值
+                ValuationValue: {
+                    required: true,
+                    number: true
+                },
+                //估值价值
+                EstimateTotalPrice: {
+                    required: true,
+                    number: true
+                },
+                //估值价值
+                EstimateUnitPrice: {
+                    required: true,
+                    number: true
+                },
+                //评估收费
+                AssessmentFees: {
+                    required: true,
+                    number: true
+                },
+                //国家
+                Country: {
+                    required: true
+                },
+                //省/直辖市/自治区
+                Province: {
+                    required: true,
+                    notspecial: true
+                },
+                no_Province: {
+                    required: true
+                },
+                //城市/自治州
+                City: {
+                    required: true,
+                    notspecial: true
+                },
+                no_City: {
+                    required: true
+                },
+                //区（县）
+                District: {
+                    required: true,
+                    notspecial: true
+                },
+                no_District: {
+                    required: true
+                },
+                //座落地址
+                Address: {
+                    required: true
+                },
+                //所在楼座
+                Building: {
+                    byteRangeLength: 200
+                },
+                //楼层总层数
+                TotalFloor: {
+                    required: true,
+                    Integer: true
+                },
+                //所在楼层
+                Floor: {
+                    required: true,
+                    Integer: true
+                },
+                //具体房号
+                RoomNo: {
+                    byteRangeLength: 40
+                },
+                //层高
+                FloorHeight: {
+                    number: true,
+                    specialNumber: 14
+                },
+                //建筑面积
+                StructureArea: {
+                    required: true,
+                    number: true,
+                    specialNumber: 14
+                },
+                //用地面积
+                UseLandArea: {
+                    number: true,
+                    specialNumber: 14
+                },
+                //分摊土地面积
+                ApportionmentArae: {
+                    number: true,
+                    specialNumber: 14
+                },
+                //建成年代
+                BuildYear: {
+                    required: true,
+                    digits: true,
+                    buildYear: true
+                },
+                //建筑结构(*)
+                BuildingStructure: {
+                    required: true
+                },
+                //耐用年限(*)
+                DurableYears: {
+                    required: true
+                },
+                //朝向(*)
+                Toward: {
+                    required: true
+                },
+                //维护状况(*)
+                MaintenanceCondition: {
+                    required: true
+                },
+                //装修程度(*)
+                DecorationDegree: {
+                    required: true
+                },
+                //公共配套设施
+                PublicFacilities: {},
+                //是否带电梯
+                HaveElevator: {
+                    required: true,
+                    YesOrNo: true
+                },
+                //环境（质量、景观）
+                Environment: {},
+                //使用状态
+                UseState: {
+                    required: true
+                },
+                //租赁周期
+                LeasePeriod: {
+                    isUseStateLeasePeriod: 14
+                },
+                //周期单位
+                PeriodicUnit: {
+                    isUseStatePeriodicUnit: true
+                },
+                //闲置期
+                IdlePeriod: {
+                    isUseStateIdlePeriod: true
+                },
+                //临街状况
+                StreetCondition: {
+                    required: true
+                },
+                //交通条件
+                TrafficCondition: {},
+                //繁华度
+                FlourishingDegree: {},
+                //预计竣工日期
+                EstimatedCompletionDate: {
+                    DateFormat: true
+                },
+                //土地用途
+                LandUse: {},
+                //土地所有制性质
+                LandOwnershipProperties: {},
+                //土地使用权类型
+                LandUseRightType: {},
+                //土地使用权证书号
+                LandUseCertificateNo: {},
+                //土地使用起始日期
+                LandUseStartDate: {
+                    DateFormat: true
+                },
+                //土地使用终止日期
+                LandUseEndDate: {
+                    DateFormat: true
+                },
+                //土地使用权单位
+                LandUseRightCompany: {
+                    byteRangeLength: 40
+                },
+                //土地使用年限
+                LandUseYears: {
+                    Integer: true
+                },
+                //购置价
+                PurchasePrice: {
+                    required: true,
+                    number: true,
+                    specialNumber: 18
+                },
+                //购买时间
+                BuyingTime: {
+                    DateFormat: true
+                },
+                //备注
+                Remark: {
+                    byteRangeLength: 1000
+                },
+                //所处小区
+                ResidentialDistrict: {
+                    byteRangeLength: 100
+                },
+                //附属面积
+                AccessoryArea: {},
+                //购房合同号
+                PurchaseContractNo: {
+                    byteRangeLength: 32
+                },
+                //产权证使用年限
+                PropertyRightCertificateUseYears: {
+                    required: true,
+                    Integer: true
+                },
+                //宗地面积
+                AncestralLandArea: {
+                    number: true,
+                    specialNumber: 18
+                },
+                //基础配套设施
+                BasicFacilities: {},
+                //有无土地证
+                HaveLandCertificate: {
+                    required: true,
+                    DoesHave: true
+                },
+                //土地面积
+                LandArea: {
+                    required: true,
+                    number: true,
+                    specialNumber: 18
+                },
+                //土地开发程度
+                LandExploitDegree: {
+                    required: true
+                },
+                //土地权证号
+                LandRightCertificateNo: {
+                    byteRangeLength: 40
+                },
+                //土地权证人名称
+                LandWarrantPersonName: {
+                    required: true,
+                    byteRangeLength: 100
+                },
+                //土地取得日期
+                LandAcquisitionDate: {
+                    DateFormat: true
+                },
+                //使用年限/已使用年限
+                UseYears: {
+                    required: true,
+                    Integer: true
+                },
+                //所处区域
+                LocationRegion: {
+                    required: true
+                },
+                //是否取得建设用地规划许可证
+                HaveConstructionLandPlanningPermit: {
+                    YesOrNo: true
+                },
+                //有无地上建筑物
+                HaveAboveGroundBuilding: {
+                    required: true,
+                    DoesHave: true
+                },
+                //地上建筑物情况说明
+                AboveGroundBuildingConditionExplain: {
+                    byteRangeLength: 1000
+                },
+                //周边环境状况
+                PeripheryEnvironmentCondition: {
+                    required: true
+                },
+                //土地价款
+                LandPrice: {
+                    number: true,
+                    specialNumber: 18
+                },
+                //出让金交付情况
+                TransferPaymentCondition: {},
+                //应补出让金金额（元）
+                MakeUpTransferFee: {
+                    number: true,
+                    specialNumber: 18
+                },
+                //宗地号
+                AncestralLandNo: {
+                    byteRangeLength: 200
+                },
+                //宗地四至
+                AncestralLandFourDirectionLine: {
+                    byteRangeLength: 100
+                },
+                //容积率
+                FloorAreaRatio: {
+                    required: true,
+                    number: true,
+                    specialNumber: 14
+                },
+                //建筑密度
+                BuildingDensity: {
+                    number: true,
+                    specialNumber: 14
+                },
+                //土地级别
+                LandLevel: {
+                    byteRangeLength: 20
+                },
+                //土地取用方式
+                LandUseMode: {},
+                //地上附着物名称
+                GroundAttachmentName: {
+                    byteRangeLength: 200
+                },
+                //地上附着物面积
+                GroundAttachmentAcreage: {
+                    number: true,
+                    specialNumber: 14
+                },
+                //土地剩余使用年限
+                LandRemainingUseYears: {
+                    Integer: true
+                },
+                //股权类型
+                EquityType: {
+                    required: true
+                },
+                //权证号
+                CertificateNo: {
+                    byteRangeLength: 200
+                },
+                //发行单位
+                IssuingUnit: {
+                    required: true,
+                    byteRangeLength: 100
+                },
+                //最新每股净资产
+                LatestNetAssetsPerShare: {
+                    number: true,
+                    specialNumber: 18
+                },
+                //数量（股）/数量
+                Quantity: {
+                    required: true,
+                    Integer: true
+                },
+                //发行价格
+                IssuePrice: {
+                    required: true,
+                    number: true,
+                    specialNumber: 18
+                },
+                //购入日期
+                PurchaseDate: {
+                    required: true,
+                    DateFormat: true
+                },
+                //公司是否盈利
+                IsCompanyProfitable: {
+                    YesOrNo: true
+                },
+                //目前管理状况
+                CurrentManagementCondition: {
+                    required: true
+                },
+                //是否独立店面
+                IsIndependentStore: {
+                    required: true,
+                    YesOrNo: true
+                },
+                //四至范围
+                FourDirectionRange: {
+                    required: true,
+                    byteRangeLength: 1000
+                },
+                //有无夹层
+                HaveInterlayer: {
+                    required: true,
+                    DoesHave: true
+                },
+                //临街深度
+                StreetDepth: {
+                    number: true,
+                    specialNumber: 14
+                },
+                //临街宽度
+                StreetWidth: {
+                    number: true,
+                    specialNumber: 14
+                },
+                //房产权利人名称
+                HousePropertyRightPersonName: {
+                    required: true,
+                    byteRangeLength: 100
+                },
+                //户型
+                HouseType: {},
+                //平面布置优劣度
+                PlaneLayoutAdvantage: {
+                    required: true
+                },
+                //配套设施
+                Facilities: {
+                    required: true
+                },
+                //有无私家车库
+                HavePrivateGarage: {
+                    DoesHave: true
+                },
+                //是否位于城市地带
+                IsUrbanArea: {
+                    required: true,
+                    YesOrNo: true
+                },
+                //使用者/使用人
+                User: {
+                    byteRangeLength: 40
+                },
+                //权属情况
+                OwnershipSituation: {},
+                //土地使用权性质
+                LandUseRightNature: {},
+                //土地取得方式
+                LandAcquisitionMode: {},
+                //土地权证类型
+                LandWarrantType: {},
+                //土地证号
+                LandCertificateNo: {
+                    byteRangeLength: 40
+                },
+                //核发日期
+                IssueDate: {
+                    DateFormat: true
+                },
+                //押品评估单价
+                ChargeEvaluationUnitPrice: {
+                    number: true,
+                    specialNumber: 18
+                },
+                //一手/二手
+                FirstOrSecondHand: {},
+                //设备名称
+                EquipmentName: {
+                    byteRangeLength: 100
+                },
+                //设备编号
+                EquipmentNo: {
+                    byteRangeLength: 40
+                },
+                //机器设备类型
+                MachineEquipmentType: {},
+                //具体用途
+                SpecificUse: {
+                    byteRangeLength: 100
+                },
+                //设备状况（是否正常生产）
+                EquipmentCondition: {
+                    required: true,
+                    YesOrNo: true
+                },
+                //品牌
+                Brand: {
+                    required: true,
+                    byteRangeLength: 200
+                },
+                //规格型号
+                SpecificationModel: {
+                    required: true,
+                    byteRangeLength: 200
+                },
+                //制造厂家
+                Manufacturer: {
+                    byteRangeLength: 300
+                },
+                //产地
+                ProductPlace: {
+                    byteRangeLength: 200
+                },
+                //计量单位
+                MeasurementUnit: {},
+                //有无产品合格证
+                HaveQualificationCertificate: {
+                    DoesHave: true
+                },
+                //有无安全检查证明
+                HaveSafetyCertificate: {
+                    DoesHave: true
+                },
+                //有无消防检查证明
+                HaveFireControlCertificate: {
+                    DoesHave: true
+                },
+                //发票号码
+                InvoiceNo: {
+                    byteRangeLength: 40
+                },
+                //所有人
+                Owner: {
+                    byteRangeLength: 100
+                },
+                //处所
+                Place: {
+                    byteRangeLength: 200
+                },
+                //设备使用寿命
+                EquipmentServiceLife: {
+                    Integer: true
+                },
+                //新旧情况
+                DepreciationCondition: {
+                    byteRangeLength: 40
+                },
+                //大修次数
+                OverhaulTimes: {
+                    Integer: true
+                },
+                //动力燃料
+                PowerFuel: {
+                    byteRangeLength: 40
+                },
+                //租赁情况
+                LeaseCondition: {
+                    byteRangeLength: 40
+                },
+                //租赁年限
+                LeaseTerm: {
+                    Integer: true
+                },
+                //年租金
+                AnnualRent: {
+                    number: true,
+                    specialNumber: 18
+                },
+                //功率
+                Power: {
+                    number: true,
+                    specialNumber: 14
+                },
+                //功率单位
+                PowerUnit: {},
+                //是否进口设备
+                IsImportedEquipment: {
+                    required: true,
+                    YesOrNo: true
+                },
+                //是否为海关监管物
+                IsCustomsControl: {
+                    required: true,
+                    YesOrNo: true
+                },
+                //购置币种
+                PurchaseCurrency: {
+                    required: true
+                },
+                //出厂日期
+                ProductionDate: {
+                    required: true,
+                    DateFormat: true
+                },
+                //监管到期日
+                RegulatoryExpirationDate: {
+                    DateFormat: true
+                }
+            },
+            messages: {
+                CompanyName: {},
+                ChargeName: {},
+                ChargeType: {},
+                PledgeName: {},
+                EvaluationMethod: {},
+                WarrantsType: {},
+                WarrantNo: {},
+                ValuationValue: {
+                    required: "请输入估值价值",
+                    number: "请输入数字"
+                },
+                AssessmentFees: {
+                    required: "请输入评估收费",
+                    number: "请输入数字"
+                },
+                Country: {
+                    required: "请选择国家"
+                },
+                Province: {
+                    required: "请选择省/直辖市/自治区",
+                    notspecial: "勿选择请选项"
+                },
+                no_Province: {
+                    required: "请输入省/直辖市/自治区"
+                },
+                City: {
+                    required: "请选择城市/自治州",
+                    notspecial: "勿选择请选项"
+                },
+                no_City: {
+                    required: "请输入城市/自治州"
+                },
+                District: {
+                    required: "请选择区（县）",
+                    notspecial: "勿选择请选项"
+                },
+                no_District: {
+                    required: "请输入区（县）"
+                },
+                Address: {
+                    required: "请输入座落地址",
+
+                },
+                Building: {
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                TotalFloor: {
+                    required: "请输入楼层总层数",
+                    Integer: "请输入整数"
+                },
+                Floor: {
+                    required: "请输入所在楼层",
+                    Integer: "请输入整数"
+                },
+                RoomNo: {
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                FloorHeight: {
+                    number: "请输入数字",
+                    specialNumber: $.validator.format("请输入数字小数点前最多保留{0}位数字，小数点后最多能保留2位小数")
+                },
+                StructureArea: {
+                    required: "请输入建筑面积",
+                    number: "请输入数字",
+                    specialNumber: $.validator.format("请输入数字小数点前最多保留{0}位数字，小数点后最多能保留2位小数")
+                },
+                UseLandArea: {
+                    number: "请输入数字",
+                    specialNumber: $.validator.format("请输入数字小数点前最多保留{0}位数字，小数点后最多能保留2位小数")
+                },
+                ApportionmentArae: {
+                    number: "请输入数字",
+                    specialNumber: $.validator.format("请输入数字小数点前最多保留{0}位数字，小数点后最多能保留2位小数")
+                },
+                BuildYear: {
+                    required: "请输入建成年代",
+                    digits: "请输入1900~2049的建成年代",
+                    buildYear: "请输入1900~2049的建成年代",
+                },
+                BuildingStructure: {
+                    required: "请输入建筑结构",
+                },
+                DurableYears: {
+                    required: "请输入耐用年限",
+                },
+                Toward: {
+                    required: "请输入朝向",
+                },
+                MaintenanceCondition: {
+                    required: "请输入维护状况",
+                },
+                DecorationDegree: {
+                    required: "请输入装修程度",
+                },
+                PublicFacilities: {},
+                HaveElevator: {
+                    required: "请选择是否带电梯",
+                    YesOrNo: "请勿输入“是”或“否”以外的字符"
+                },
+                HaveLandCertificate: {
+                    required: "请选择有无土地证",
+                    DoesHave: "请勿输入“有”或“无”以外的字符"
+                },
+                Environment: {},
+                UseState: {
+                    required: "请输入使用状态",
+                },
+                LeasePeriod: {
+                    isUseStateLeasePeriod: $.validator.format("请输入租赁周期且为数字 小数点前最多保留{0}位数字，小数点后最多能保留2位小数")
+                },
+                PeriodicUnit: {
+                    isUseStatePeriodicUnit: "请输入周期单位",
+                },
+                IdlePeriod: {
+                    isUseStateIdlePeriod: "请输入周期单位闲置期且只允许输入整数"
+                },
+                StreetCondition: {
+                    required: "请输入临街状况"
+                },
+                EstimatedCompletionDate: {
+                    DateFormat: "请输入日期格式(yyyy-mm-dd)"
+                },
+                LandUse: {},
+                LandOwnershipProperties: {},
+                LandUseRightType: {},
+                LandUseCertificateNo: {},
+                LandUseStartDate: {
+                    DateFormat: "请输入日期格式(yyyy-mm-dd)"
+                },
+                LandUseEndDate: {
+                    DateFormat: "请输入日期格式(yyyy-mm-dd)"
+                },
+                LandUseRightCompany: {
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                LandUseYears: {
+                    Integer: "请输入整数"
+                },
+                PurchasePrice: {
+                    required: "请输入购置价",
+                    number: "请输入数字",
+                    specialNumber: $.validator.format("请输入数字小数点前最多保留{0}位数字，小数点后最多能保留2位小数")
+                },
+                BuyingTime: {
+                    DateFormat: "请输入日期格式(yyyy-mm-dd)"
+                },
+                Remark: {
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                ResidentialDistrict: {
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                AccessoryArea: {},
+                PurchaseContractNo: {
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                PropertyRightCertificateUseYears: {
+                    required: "请输入产权证使用年限",
+                    Integer: "请输入整数"
+                },
+                AncestralLandArea: {
+                    number: "请输入数字",
+                    specialNumber: $.validator.format("请输入数字小数点前最多保留{0}位数字，小数点后最多能保留2位小数")
+                },
+                LandExploitDegree: {
+                    required: "请输入土地开发程度"
+                },
+                LandRightCertificateNo: {
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                LandWarrantPersonName: {
+                    required: "请输入土地权证人名称",
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                LandAcquisitionDate: {
+                    DateFormat: "输入日期格式(yyyy-mm-dd)"
+                },
+                UseYears: {
+                    required: "请输入使用年限/已使用年限",
+                    Integer: "请输入整数"
+                },
+                LocationRegion: {
+                    required: "请输入所处区域"
+                },
+                HaveConstructionLandPlanningPermit: {
+                    YesOrNo: "请勿输入“是”或“否”以外的字符"
+                },
+                HaveAboveGroundBuilding: {
+                    required: "请选择有无地上建筑物",
+                    DoesHave: "请勿输入“有”或“无”以外的字符"
+                },
+                AboveGroundBuildingConditionExplain: {
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                PeripheryEnvironmentCondition: {
+                    required: "请输入周边环境状况"
+                },
+                LandPrice: {
+                    number: "请输入数字",
+                    specialNumber: $.validator.format("请输入数字小数点前最多保留{0}位数字，小数点后最多能保留2位小数")
+                },
+                TransferPaymentCondition: {},
+                MakeUpTransferFee: {
+                    number: "请输入数字",
+                    specialNumber: $.validator.format("请输入数字小数点前最多保留{0}位数字，小数点后最多能保留2位小数")
+                },
+                AncestralLandNo: {
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                AncestralLandFourDirectionLine: {
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                FloorAreaRatio: {
+                    required: "请输入容积率",
+                    number: "请输入数字",
+                    specialNumber: $.validator.format("请输入数字小数点前最多保留{0}位数字，小数点后最多能保留2位小数")
+                },
+                BuildingDensity: {
+                    number: "请输入数字",
+                    specialNumber: $.validator.format("请输入数字小数点前最多保留{0}位数字，小数点后最多能保留2位小数")
+                },
+                LandLevel: {
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                LandUseMode: {},
+                GroundAttachmentName: {
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                GroundAttachmentAcreage: {
+                    number: "请输入数字",
+                    specialNumber: $.validator.format("请输入数字小数点前最多保留{0}位数字，小数点后最多能保留2位小数")
+                },
+                LandRemainingUseYears: {
+                    Integer: "请输入整数"
+                },
+                EquityType: {
+                    required: "请输入股权类型"
+                },
+                CertificateNo: {
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                IssuingUnit: {
+                    required: "请输入发行单位",
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                LatestNetAssetsPerShare: {
+                    number: "请输入数字",
+                    specialNumber: $.validator.format("请输入数字小数点前最多保留{0}位数字，小数点后最多能保留2位小数")
+                },
+                Quantity: {
+                    required: "请输入数量（股）",
+                    Integer: "请输入整数"
+                },
+                IssuePrice: {
+                    required: "请输入发行价格",
+                    number: "请输入数字",
+                    specialNumber: $.validator.format("请输入数字小数点前最多保留{0}位数字，小数点后最多能保留2位小数")
+                },
+                PurchaseDate: {
+                    required: "请输入购入日期",
+                    DateFormat: "输入日期格式(yyyy-mm-dd)"
+                },
+                IsCompanyProfitable: {
+                    YesOrNo: "请勿输入“是”或“否”以外的字符"
+                },
+                CurrentManagementCondition: {
+                    required: "请输入目前管理状况"
+                },
+                IsIndependentStore: {
+                    required: "请选择是否独立店面",
+                    YesOrNo: "请勿输入“是”或“否”以外的字符"
+                },
+                FourDirectionRange: {
+                    required: "请输入四至范围",
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                HaveInterlayer: {
+                    required: "请选择有无夹层",
+                    DoesHave: "请勿输入“有”或“无”以外的字符"
+                },
+                StreetDepth: {
+                    number: "请输入数字",
+                    specialNumber: $.validator.format("请输入数字小数点前最多保留{0}位数字，小数点后最多能保留2位小数")
+                },
+                StreetWidth: {
+                    number: "请输入数字",
+                    specialNumber: $.validator.format("请输入数字小数点前最多保留{0}位数字，小数点后最多能保留2位小数")
+                },
+                HousePropertyRightPersonName: {
+                    required: true,
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                HouseType: {},
+                Facilities: {
+                    required: "请输入配套设施"
+                },
+                HavePrivateGarage: {
+                    DoesHave: "请勿输入“有”或“无”以外的字符"
+                },
+                IsUrbanArea: {
+                    required: "请选择是否位于城市地带",
+                    YesOrNo: "请勿输入“是”或“否”以外的字符"
+                },
+                User: {
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                OwnershipSituation: {},
+                LandUseRightNature: {},
+                LandAcquisitionMode: {},
+                LandWarrantType: {},
+                LandCertificateNo: {
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                IssueDate: {
+                    DateFormat: "输入日期格式(yyyy-mm-dd)"
+                },
+                ChargeEvaluationUnitPrice: {
+                    number: "请输入数字",
+                    specialNumber: $.validator.format("请输入数字小数点前最多保留{0}位数字，小数点后最多能保留2位小数")
+                },
+                FirstOrSecondHand: {},
+                EquipmentName: {
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                EquipmentNo: {
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                MachineEquipmentType: {},
+                SpecificUse: {
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                EquipmentCondition: {
+                    required: "请选择设备状况（是否正常生产）",
+                    YesOrNo: "请勿输入“是”或“否”以外的字符"
+                },
+                Brand: {
+                    required: "请输入品牌",
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                SpecificationModel: {
+                    required: "请输入规格型号",
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                Manufacturer: {
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                ProductPlace: {
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                MeasurementUnit: {},
+                HaveQualificationCertificate: {
+                    DoesHave: "请勿输入“有”或“无”以外的字符"
+                },
+                HaveSafetyCertificate: {
+                    DoesHave: "请勿输入“有”或“无”以外的字符"
+                },
+                HaveFireControlCertificate: {
+                    DoesHave: "请勿输入“有”或“无”以外的字符"
+                },
+                InvoiceNo: {
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                Owner: {
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                Place: {
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                EquipmentServiceLife: {
+                    Integer: "请输入整数"
+                },
+                DepreciationCondition: {
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                OverhaulTimes: {
+                    Integer: "请输入整数"
+                },
+                PowerFuel: {
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                LeaseCondition: {
+                    byteRangeLength: $.validator.format("长度不能超过{0}个字符")
+                },
+                LeaseTerm: {
+                    Integer: "请输入整数"
+                },
+                AnnualRent: {
+                    number: "请输入数字",
+                    specialNumber: $.validator.format("请输入数字小数点前最多保留{0}位数字，小数点后最多能保留2位小数")
+                },
+                Power: {
+                    number: "请输入数字",
+                    specialNumber: $.validator.format("请输入数字小数点前最多保留{0}位数字，小数点后最多能保留2位小数")
+                },
+                PowerUnit: {},
+                IsImportedEquipment: {
+                    required: "请选择是否进口设备",
+                    YesOrNo: "请勿输入“是”或“否”以外的字符"
+                },
+                IsCustomsControl: {
+                    required: "请选择是否为海关监管物",
+                    YesOrNo: "请勿输入“是”或“否”以外的字符"
+                },
+                PurchaseCurrency: {
+                    required: "请输入购置币种"
+                },
+                ProductionDate: {
+                    required: "请输入出厂日期",
+                    DateFormat: "输入日期格式(yyyy-mm-dd)"
+                },
+                RegulatoryExpirationDate: {
+                    DateFormat: "输入日期格式(yyyy-mm-dd)"
+                }
+
+            },
+            success: function(label) {
+                layer.close(dialog);
+                $("#" + label[0].htmlFor).removeClass("error-border");
+            },
+            errorPlacement: function(error, element) {
+                $("#" + element[0].id).addClass("error-border");
+                dialog = layer.tips(error[0].innerHTML, "#" + element[0].id, {
+                    tips: [2, '#F99228']
+                });
+            }
+        });
+
+        if ('@ViewBag.HaveUpload' == 'true') {
+            haveUpload();
+        } else {
+            noUpload();
+        }
+
+        //收缩与展示图标切换
+        $("#arrow-circle").click(function () {
+            if ($(this).hasClass("fa-arrow-circle-down")) {
+                $(this).removeClass("fa-arrow-circle-down").addClass("fa-arrow-circle-up");
+            } else {
+                $(this).removeClass("fa-arrow-circle-up").addClass("fa-arrow-circle-down");
+            }
+        });
+        tableint();
+    });
+
+    //已上传报告
+    function haveUpload() {
+        //$("#save").show();
+        $("#save").attr("disabled", false);
+        $("#save").css({ "background-color": "#fb6940", "border-color": "#fb6940" });
+        var tips = "@if (ViewBag.OperateType == "报告预估")
+        {
+            @Html.Raw("您已上传预估报告文件，重新上传则替换原报告");
+        }
+        else
+        {
+           @Html.Raw("您已上传正式报告文件，重新上传则替换原报告");
+        }";
+        $("#tips").html(tips);
+    }
+
+    //未上传报告
+    function noUpload() {
+        //$("#save").hide();
+        $("#save").attr("disabled", true);
+        $("#save").css({ "background-color": "gray", "border-color": "gray" });
+        var tips = "@if (ViewBag.OperateType == "报告预估")
+        {
+            @Html.Raw("您还未上传预估报告文件，请先上传报告文件再进行保存");
+        }
+        else
+        {
+            @Html.Raw("您还未上传正式报告文件，请先上传报告文件再进行保存");
+        }";
+        $("#tips").html(tips);
+    }
+
+    //关闭
+    function cancel() {
+        layer.close(index);
+    }
+
+    //下拉与输入框切换
+    function initCountry(flag) {
+        if (flag) {
+            $(".chinaselctor").show();
+            $(".nochinaselctor").hide();
+        } else {
+            $(".chinaselctor").hide();
+            $(".nochinaselctor").show();
+        }
+    }
+
+    //条件初始化
+    function initType(type) {
+        if (type == "edit") {
+            if (_Country == "中国") {
+                setSelectChecked("Country", "中国");
+                initCountry(true);
+                initData(_province, _city, _county);
+            } else {
+                var arry = [];
+                $("#Country option").each(function() {
+                    arry.push($(this).text());
+                });
+                if (getIndex(arry, _Country) == -1) {
+                    initCountry(true);
+                    setSelectChecked("Country", "中国");
+                    initData();
+                } else {
+                    initCountry();
+                    setSelectChecked("Country", _Country);
+                    $("#no_Province").val(_province);
+                    $("#no_City").val(_city);
+                    $("#no_District").val(_county);
+                }
+            }
+        } else {
+            initCountry(true);
+            initData();
+        }
+    }
+
+    //根据省份、城市、行政区名称来初始化选中ID
+    function initData(_provinceName, _cityName, _countyName) {
+        var _provinceIdx = 0, _cityIdx = 0, _countyIdx = 0;
+        $.extend($.validator.defaults, { ignore: "" });
+        if (_provinceName !== undefined && _cityName !== undefined && _countyName !== undefined) {
+            _provinceIdx = getID(_provinceName, data.provinceList);
+            if (_provinceIdx == -1) {
+                _provinceIdx = 0;
+                _cityIdx = 0;
+                _countyIdx = 0;
+            } else {
+                _cityIdx = getID(_cityName, data.cityList["city_" + _provinceIdx]);
+                if (_cityIdx == -1) {
+                    _cityIdx = 0;
+                    _countyIdx = 0;
+                } else {
+                    _countyIdx = getID(_countyName, data.countyList["city_" + _cityIdx]);
+                    if (_countyIdx == -1) {
+                        _countyIdx = 0;
+                    }
+                }
+            }
+        }
+        new $.choosearea({
+            selectDomId: {
+                province: "Province",
+                city: "City",
+                county: "District"
+            },
+            initAreaIds: {
+                province: _provinceIdx,
+                city: _cityIdx,
+                county: _countyIdx
+            },
+            data: data
+        });
+    }
+
+    //根据名称获取相应ID
+    function getID($name, arry) {
+        for (var i = 0; i < arry.length; i++) {
+            if ($name == arry[i].name) {
+                return arry[i].id;
+            }
+        }
+        return -1;
+    }
+
+    //设置选中
+    function setSelectChecked(selectId, checkValue) {
+        var options = $("#" + selectId + " option");
+        for (var i = 0; i < options.length; i++) {
+            if (options.eq(i).text() == checkValue) {
+                options.eq(i).attr('selected', 'selected');
+                break;
+            }
+        }
+    };
+
+    function getIndex(arry, obj) {
+        for (var i = 0; i < arry.length; i++) {
+            if (obj === arry[i]) {
+                return i;
+            }
+        }
+        return -1;
+    };
+
+    //列表初始化
+    function tableint() {
+        $('#table').bootstrapTable({
+            url: '/Project/GetReportList', //请求后台的URL（*）
+            method: 'post', //请求方式（*）
+            striped: true, //是否显示行间隔色
+            cache: false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+            sortable: false, //是否启用排序
+            sortOrder: "asc", //排序方式
+            queryParams: function(params) {
+                return {
+                    id: '@Model.Project.Id'
+                };
+            }, //传递参数（*）
+            sidePagination: "client", //分页方式：client客户端分页，server服务端分页（*）
+            pageNumber: 1, //初始化加载第一页，默认第一页
+            pageSize: 10, //每页的记录行数（*）
+            pageList: [10, 25, 50, 100], //可供选择的每页的行数（*）
+            strictSearch: true,
+            height: 'auto', //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+            uniqueId: "Id", //每一行的唯一标识，一般为主键列
+            cardView: false, //是否显示详细视图
+            detailView: false, //是否显示父子表
+            columns: [
+                {
+                    field: 'Number',
+                    title: '序号',
+                    formatter: function(value, row, index) {
+                        return index + 1;
+                    },
+                    width: '4%'
+                },
+                {
+                    title: '文件名',
+                    field: 'FileName',
+                    align: 'left',
+                    valign: 'middle',
+                    width: '20%'
+                },
+                {
+                    title: '报告类型',
+                    field: 'ResourcesType',
+                    align: 'left',
+                    valign: 'middle',
+                    width: '10%'
+                },
+                {
+                    title: '上传时间',
+                    field: 'CreateTime',
+                    align: 'left',
+                    valign: 'middle',
+                    width: '11%'
+                },
+                {
+                    title: '是否当前报告',
+                    field: 'IsLast',
+                    align: 'center',
+                    valign: 'middle',
+                    width: '8%'
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    valign: 'middle',
+                    width: '10%',
+                    formatter: function(value, row, index) {
+                        var a = '<a href="javascript:void(0);"  onclick=downLoadResource("' + row.Id + '","' + $("#projectId").val() + '","' + '@ViewBag.OperateType' + '")>下载</a>';
+                        return a;
+                    }
+                }
+            ]
+        });
+    }
+
+    //下载报告
+    function downLoadResource(id, projectId, operateType) {
+        showLoadingTips();
+        window.location.href = "@Url.Content("~/Project/DownLoadResource?id=")" + id + "&projectId=" + projectId + "&operateType=" + operateType;
+        hideLoadingTips();
+    }
+</script>

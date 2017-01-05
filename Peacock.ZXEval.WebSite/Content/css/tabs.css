@@ -1,0 +1,140 @@
+﻿/*选项卡*/
+.tab-layout{
+	width:100%;
+	margin: 0 auto;
+}
+.tab-layout .tab-layout-title{
+    height: 30px;
+    line-height: 20px;
+    position: relative;
+    padding: 0 32px;
+    z-index: 10;
+    background: #D7000F;
+    overflow: hidden
+}
+.tab-layout .tab-layout-title .tab-layout-left-arrow,.tab-layout .tab-layout-title .tab-layout-right-arrow{
+	font-size: 16px;
+	font-weight: 700;
+	padding:5px 10px;
+	color: #fff;
+	height:30px;
+	overflow: hidden;
+	position: absolute;
+	z-index: 99;
+	cursor: pointer;
+    top: -1px;
+}
+.tab-layout .tab-layout-title .tab-layout-left-arrow{
+	left: 0;
+    /*border-right: 1px solid #d1d1d1*/
+}
+.tab-layout .tab-layout-title .tab-layout-left-arrow[disabled],.tab-layout .tab-layout-title .tab-layout-right-arrow[disabled] {
+    cursor: not-allowed
+}
+.tab-layout .tab-layout-title  .tab-layout-left-arrow .line{
+    border-left: 1px solid #fff;
+    position: absolute;
+    height: 30px;
+    right: 0px;
+}
+.tab-layout .tab-layout-title .tab-layout-right-arrow .line {
+    border-left: 1px solid #fff;
+    position: absolute;
+    height: 30px;
+    left: 0px;
+} 
+.tab-layout .tab-layout-title .tab-layout-right-arrow{
+	right: 0;
+    /*border-left: 1px solid #d1d1d1*/
+}
+.tab-layout .tab-layout-title .tab-layout-content{
+	width:100%; 
+	overflow: hidden;
+}
+
+.tab-layout .tab-layout-title .tab-layout-content ul{
+	width:9999999px; 
+	zoom:1;
+	height:30px;
+	overflow: hidden;
+}
+.tab-layout .tab-layout-title .tab-layout-content ul::after{
+	clear: both;
+	content: '';
+}
+.tab-layout .tab-layout-title .tab-layout-content li.item-content{
+	float: left;
+}
+.tab-layout .tab-layout-title .tab-layout-content li.item-content{
+	padding:5px 20px 0 5px;
+	height: 30px;
+	display:inline-block;
+	white-space:nowrap; 
+	overflow:hidden;
+	text-overflow:ellipsis;
+	position: relative;
+    border: 0;
+	border-right:1px solid #fff;
+	cursor: pointer;
+    overflow: hidden;
+}
+.tab-layout .tab-layout-title .tab-layout-content li.item-content.sm {
+    padding:5px 5px 0 5px;
+}
+.tab-layout .tab-layout-title .tab-layout-content li.item-content.current{
+     background: #fff;
+}
+.tab-layout .tab-layout-title .tab-layout-content li.item-content a {
+     color: #fff;
+}
+.tab-layout .tab-layout-title .tab-layout-content li.item-content.current a,.tab-layout .tab-layout-title .tab-layout-content li.item-content.current a:hover {
+   color:#D7000F ;
+}
+.tab-layout .tab-layout-title .tab-layout-content li.item-content .item-del{
+	color:#fff;
+    font-size: 12px;
+    position: absolute;
+    right: 0;
+    top: -1px;
+    cursor: pointer;
+    padding:2px 0 0 2px;
+}
+.tab-layout .tab-layout-title .tab-layout-content li.item-content.current .item-del {
+    color:#D7000F ;
+}
+.iFrameHide{
+	display: none;
+}
+.iFrameShow{
+	border:0;
+	width:100%;
+}
+.contextmenu{
+	width:100px;
+	position:absolute;
+	z-index:99999;
+	background:#fff;
+	border:1px solid #ccc
+}
+.contextmenu ul {
+     margin: 0;
+}
+.contextmenu ul li{
+	padding: 5px 10px;
+}
+.tab-layout-body {
+    position: relative
+}
+
+/*20160623新设计修改样式*/
+.tab-layout .tab-layout-title .tab-layout-content li.item-content {
+    padding:5px 10px 0 10px
+}
+.tab-layout .tab-layout-title .tab-layout-content li.item-content.sm {
+    padding:5px 10px 0 10px;
+}
+.tab-layout .tab-layout-title .tab-layout-content li.item-content .item-del {
+    position: relative;
+    top: 0;
+    margin-left:10px
+}

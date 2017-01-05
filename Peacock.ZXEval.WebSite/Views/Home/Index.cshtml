@@ -1,0 +1,204 @@
+﻿@using Peacock.ZXEval.Model.DTO
+@{
+    Layout = null;
+    var currentUser = (UserModel) ViewBag.CurrentUser;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>中信评估系统</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link href="~/Content/plug-in/bootstrap/bootstrap.min.css?v=@HttpContext.Current.Application["JSVersion"]" rel="stylesheet" />
+    <link href="~/Content/css/font-awesome.min.css?v=@HttpContext.Current.Application["JSVersion"]" rel="stylesheet" />
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="~/Content/css/font-awesome-ie7.min.css?v=@HttpContext.Current.Application["JSVersion"]">
+    <![endif]-->
+    <link rel="stylesheet" href="~/Content/plug-in/ace/ace.min.css?v=@HttpContext.Current.Application["JSVersion"]" />
+    <link rel="stylesheet" href="~/Content/plug-in/ace/ace-rtl.min.css?v=@HttpContext.Current.Application["JSVersion"]" />
+    <link rel="stylesheet" href="~/Content/plug-in/ace/ace-skins.min.css?v=@HttpContext.Current.Application["JSVersion"]" />
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="~/Content/plug-in/ace/ace-ie.min.css?v=@HttpContext.Current.Application["JSVersion"]"/>
+    <![endif]-->
+    <link rel="stylesheet" href="~/Content/css/style.css?v=@HttpContext.Current.Application["JSVersion"]" />
+    <link rel="stylesheet" href="~/Content/css/tabs.css?v=@HttpContext.Current.Application["JSVersion"]" />
+
+</head>
+<body class="skin-1 oh bc-white">
+    <div class="navbar navbar-default" id="navbar">
+
+        <div class="navbar-container f-cf" id="navbar-container">
+            <div class="navbar-header pull-left">
+                <a href="javascript:;" class="navbar-brand logo">
+                  <img src="~/Content/images/banner-logo.png" />
+                </a>
+            </div>
+            <ul class="navbar-header pull-right users-info hidden-sm hidden-xs ">
+
+                <li>
+                    <a href="javascript:;" title="@currentUser.UserName" id="userInfo">
+                        <i class="fa fa-user"></i>&nbsp;&nbsp;@currentUser.UserName
+                    </a>
+                </li>
+                <li class="line">/</li>
+                <li>
+                    <a href="javascript:void(0)" title="退出" id="quick">
+                        <i class="fa fa-power-off"></i>&nbsp;&nbsp;退出
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-container" id="main-container">
+        <div class="main-container-inner">
+            <div class="sidebar" id="sidebar">
+
+                <ul class="nav nav-list" style="margin-top:30px">
+                    <li class="current">
+                        <a href="javascript:void(0);" onclick="changeIframe('Evaluation', '评估任务', '@Url.Action("Index", "Project")', 'true')">
+                            <div class="menu-btn">
+                                <i class="fa fa-file-archive-o"></i>
+                                <span class="menu-name">评估任务</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" onclick="changeIframe('Revaluation', '复估任务', '@Url.Action("Index", "Revaluation")')">
+                            <div class="menu-btn">
+                                <i class="fa fa-paste"></i>
+                                <span class="menu-name">复估任务</span>
+                            </div>
+                        </a>
+                    </li>
+                    @if (currentUser.IsAdmin)
+                    {
+                        <li>
+                            <a href="javascript:void(0);" onclick="changeIframe('CompanyMng', '公司管理', '@Url.Action("Index", "Company")')">
+                                <div class="menu-btn">
+                                    <i class="fa fa-tag"></i>
+                                    <span class="menu-name">公司管理</span>
+                                </div>
+                            </a>
+                        </li>
+                    }                    
+                </ul>
+            </div>
+            <div class="main-content">
+                <div class="page-content" id="page-content">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="~/Content/plug-in/jquery/jquery-1.10.2.min.js?v=@HttpContext.Current.Application["JSVersion"]"></script>
+    <script type="text/javascript" src="~/Content/plug-in/ace/ace-extra.min.js?v=@HttpContext.Current.Application["JSVersion"]"></script>
+    <script type="text/javascript" src="~/Content/plug-in/layer/layer.js?v=@HttpContext.Current.Application["JSVersion"]"></script>
+    <!--[if lt IE 9]>
+    <script type="text/javascript"  src="~/Content/plug-in/bootstrap.extends/html5shiv.min.js?v=@HttpContext.Current.Application["JSVersion"]"></script>
+    <script type="text/javascript"  src="~/Content/plug-in/bootstrap.extends/respond.min.js?v=@HttpContext.Current.Application["JSVersion"]"></script>
+    <![endif]-->
+    <script type="text/javascript" src="~/Content/plug-in/jquery/jquery.tabs.js?v=@HttpContext.Current.Application["JSVersion"]"></script>
+    <script type="text/javascript">
+        var _showloadingTip,dialog;
+        try {
+            ace.settings.check('main-container', 'fixed');
+            ace.settings.check('sidebar', 'fixed');
+            ace.settings.check('sidebar', 'collapsed');
+        } catch (e) { }
+        $(function () {
+            if (!$.support.leadingWhitespace) {
+                layer.open({
+                    type: 1,
+                    title: false,
+                    closeBtn: 0,
+                    shadeClose: true,
+                    content: '<div class="alert alert-danger" role="alert" id="alert">请您使用IE9及以上浏览器，获得更好用户体验</div>'
+                });
+            }
+
+            $("body").click(function (event) {
+                if (event && event.stopPropagation) {
+                    event.stopPropagation();
+                } else {
+                    window.event.cancelBubble = true;
+                }
+
+            });
+            reset();
+            changeIframe('Evaluation', '评估任务', '@Url.Action("Index", "Project")', 'true');
+
+            //窗口大小自适应
+            $(window).resize(function () {
+                resizeWin();
+                reset();
+            });
+
+            $(".nav-list  li").click(function (event) {
+                event.stopPropagation();
+                $(".nav-list  li").removeClass("current");
+                $(this).addClass("current");
+            });
+
+        });
+
+        function changeIframe(id, name, url, del) {
+            if ($("#sidebar").hasClass("menu-min")) {
+                $("#sidebar").find(".submenu").removeClass("fb");
+            }
+            additem(id, name, url, del);
+        }
+
+        function delFrame(id) {
+            delitem(id);
+        }
+
+        function reset() {
+            $("#sidebar, #url").height($(window).height() - 80);
+        }
+
+        function showLoadingTips() {
+            _showloadingTip = layer.load(2, {
+                shade: [0.1, '#000']
+            });
+        }
+        function hideLoadingTips() {
+            layer.close(_showloadingTip);
+        }
+
+        //退出
+        $("#quick").click(function () {
+            $.ajax({
+                type: 'POST',
+                url: '/User/Logout',
+                data: null,
+                dataType: 'json',
+                beforesend: showLoadingTips(),
+                complete: function () { hideLoadingTips(); },
+                success: function (result) {
+                    if (result.success == true) {
+                        self.location.replace('/User/Login');
+                    }
+                },
+                error: function () {
+                    layer.open({ content: '网络异常,请稍后再试!' });
+                }
+            });
+        });
+
+        //修改密码
+        $("#userInfo").click(function () {
+            if (dialog) {
+                layer.closeAll();
+            }
+            dialog = layer.open({
+                type: 2,
+                title: "修改密码",
+                shade: false,
+                area: ['500px', '300px'],
+                content: '/User/ChangePassword'
+            });
+        });
+    </script>
+</body>
+</html>
